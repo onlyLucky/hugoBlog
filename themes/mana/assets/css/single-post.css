@@ -466,13 +466,12 @@
 /* ── Tables ── */
 .post-content-main table {
   width: 100%;
-  max-width: 100%;
+  min-width: 100%;
   border-collapse: collapse;
   margin: var(--spacing-md) 0;
   font-size: 0.95rem;
   line-height: 1.6;
-  overflow-x: auto;
-  display: block;
+  table-layout: auto;
 }
 
 .post-content-main thead {
@@ -520,7 +519,7 @@
   border-left: 4px solid var(--accent-primary);
   background-color: var(--bg-secondary);
   border-radius: 0 0.5rem 0.5rem 0;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-style: normal;
 }
 
@@ -782,7 +781,7 @@
 
 .nav-title {
   display: block;
-  color: var(--text-primary);
+  color: var(--accent-primary);
   font-weight: 600;
 }
 
@@ -807,7 +806,7 @@
   /* Tables: horizontal scroll on mobile */
   .post-content-main table {
     font-size: 0.85rem;
-    display: block;
+    min-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }

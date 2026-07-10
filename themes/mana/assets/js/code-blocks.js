@@ -1,8 +1,5 @@
 // Collapsible Code Blocks
 
-/**
- * Extract language from code block
- */
 function extractLanguage(block) {
   const codeElement = block.querySelector("code");
   if (codeElement) {
@@ -15,17 +12,11 @@ function extractLanguage(block) {
   return null;
 }
 
-/**
- * Capitalize first letter of language name
- */
 function capitalizeLanguage(lang) {
   if (!lang) return "";
   return lang.charAt(0).toUpperCase() + lang.slice(1);
 }
 
-/**
- * Count lines in code block
- */
 function countCodeLines(block) {
   const codeElement = block.querySelector("code") || block;
   const text = codeElement.textContent || codeElement.innerText || "";
@@ -37,8 +28,33 @@ function countCodeLines(block) {
 }
 
 /**
- * Initialize collapsible code blocks
+ * Animate collapse/expand
  */
+function animateCollapse(wrapper, content, showBar, collapse) {
+  if (collapse) {
+    // Collapsing: measure current height, animate to 0
+    const currentHeight = content.scrollHeight;
+    content.style.maxHeight = currentHeight + "px";
+    content.offsetHeight; // force reflow
+    content.style.maxHeight = "0px";
+    wrapper.classList.add("collapsed");
+  } else {
+    // Expanding: measure content height, animate to it, then set to 500px max
+    wrapper.classList.remove("collapsed");
+    const targetHeight = Math.min(content.scrollHeight, 500);
+    content.style.maxHeight = "0px";
+    content.offsetHeight; // force reflow
+    content.style.maxHeight = targetHeight + "px";
+
+    // After animation, set to max-height for scroll
+    const onEnd = () => {
+      content.style.maxHeight = "500px";
+      content.removeEventListener("transitionend", onEnd);
+    };
+    content.addEventListener("transitionend", onEnd);
+  }
+}
+
 function initCollapsibleCodeBlocks() {
   const postContent = document.querySelector(".post-content-main");
   if (!postContent) return;
@@ -53,8 +69,8 @@ function initCollapsibleCodeBlocks() {
     let wrapper = block.closest(".code-block-wrapper");
     let isNewWrapper = false;
 
-    const lineCount = countCodeLines(block);
-    const isCollapsible = lineCount >= 5;
+    // All code blocks are collapsible
+    const isCollapsible = true;
 
     if (!wrapper) {
       wrapper = document.createElement("div");
@@ -71,7 +87,6 @@ function initCollapsibleCodeBlocks() {
       headerBar = document.createElement("div");
       headerBar.className = "code-block-header";
 
-      // Language label
       if (language) {
         const langLabel = document.createElement("span");
         langLabel.className = "code-block-lang";
@@ -79,7 +94,6 @@ function initCollapsibleCodeBlocks() {
         headerBar.appendChild(langLabel);
       }
 
-      // Button container
       const buttonContainer = document.createElement("div");
       buttonContainer.className = "code-block-buttons";
 
@@ -99,69 +113,42 @@ function initCollapsibleCodeBlocks() {
         <span class="copied-text" style="display: none;">Copied!</span>
       `;
 
-      const getCodeText = () => {
-        const codeElement = block.querySelector("code") || block;
-        return codeElement.textContent || codeElement.innerText || "";
-      };
-
       copyButton.addEventListener("click", async (e) => {
         e.stopPropagation();
-        const codeText = getCodeText();
-        const isMobile = window.innerWidth <= 768;
-
+        const codeElement = block.querySelector("code") || block;
+        const codeText = codeElement.textContent || codeElement.innerText || "";
         try {
           await navigator.clipboard.writeText(codeText);
-          const copyText = copyButton.querySelector(".copy-text");
-          const copiedText = copyButton.querySelector(".copied-text");
           const copyIcon = copyButton.querySelector(".copy-icon");
           const checkmarkIcon = copyButton.querySelector(".checkmark-icon");
+          const copyText = copyButton.querySelector(".copy-text");
+          const copiedText = copyButton.querySelector(".copied-text");
 
-          copyButton.setAttribute("aria-label", "Code copied");
-          copyButton.setAttribute("title", "Copied!");
           copyIcon.style.display = "none";
           checkmarkIcon.style.display = "block";
-
-          if (!isMobile) {
-            copyText.style.display = "none";
-            copiedText.style.display = "inline";
-          }
+          copyText.style.display = "none";
+          copiedText.style.display = "inline";
           copyButton.classList.add("copied");
 
           setTimeout(() => {
             checkmarkIcon.style.display = "none";
             copyIcon.style.display = "block";
-            if (!isMobile) {
-              copiedText.style.display = "none";
-              copyText.style.display = "inline";
-            }
+            copiedText.style.display = "none";
+            copyText.style.display = "inline";
             copyButton.classList.remove("copied");
-            copyButton.setAttribute("aria-label", "Copy code");
-            copyButton.setAttribute("title", "Copy code");
           }, 2000);
         } catch (err) {
-          const textArea = document.createElement("textarea");
-          textArea.value = codeText;
-          textArea.style.position = "fixed";
-          textArea.style.opacity = "0";
-          document.body.appendChild(textArea);
-          textArea.select();
-          try {
-            document.execCommand("copy");
-          } catch (fallbackErr) {
-            console.error("Failed to copy code:", fallbackErr);
-          }
-          document.body.removeChild(textArea);
+          console.error("Failed to copy:", err);
         }
       });
 
       buttonContainer.appendChild(copyButton);
 
-      // Toggle button - only if collapsible
+      // Toggle button
       if (isCollapsible) {
         const toggle = document.createElement("button");
         toggle.className = "code-block-toggle";
-        toggle.setAttribute("aria-label", "Collapse code block");
-        toggle.setAttribute("aria-expanded", "true");
+        toggle.setAttribute("aria-label", "Collapse");
         toggle.setAttribute("title", "Collapse");
         toggle.innerHTML = `
           <svg class="toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,15 +158,16 @@ function initCollapsibleCodeBlocks() {
         `;
 
         toggle.addEventListener("click", () => {
+          const content = wrapper.querySelector(".code-block-content");
+          const showBar = wrapper.querySelector(".code-block-show");
           const isCollapsed = wrapper.classList.contains("collapsed");
-          wrapper.classList.toggle("collapsed");
-          toggle.setAttribute("aria-expanded", isCollapsed);
+
+          animateCollapse(wrapper, content, showBar, !isCollapsed);
+
+          toggle.setAttribute("aria-label", isCollapsed ? "Collapse" : "Expand");
           toggle.setAttribute("title", isCollapsed ? "Collapse" : "Expand");
-          toggle.setAttribute("aria-label", isCollapsed ? "Collapse code block" : "Expand code block");
           const toggleText = toggle.querySelector(".toggle-text");
-          if (toggleText) {
-            toggleText.textContent = isCollapsed ? "Collapse" : "Expand";
-          }
+          if (toggleText) toggleText.textContent = isCollapsed ? "Collapse" : "Expand";
         });
 
         buttonContainer.appendChild(toggle);
@@ -190,11 +178,10 @@ function initCollapsibleCodeBlocks() {
     }
 
     if (isNewWrapper) {
-      // Create content wrapper
       const content = document.createElement("div");
       content.className = "code-block-content";
 
-      // Create "Show code" bar (visible only when collapsed)
+      // Show code bar (for collapsed state)
       if (isCollapsible) {
         const showBar = document.createElement("div");
         showBar.className = "code-block-show";
@@ -206,10 +193,10 @@ function initCollapsibleCodeBlocks() {
         `;
 
         showBar.addEventListener("click", () => {
-          wrapper.classList.remove("collapsed");
+          animateCollapse(wrapper, content, showBar, false);
           const toggle = wrapper.querySelector(".code-block-toggle");
           if (toggle) {
-            toggle.setAttribute("aria-expanded", "true");
+            toggle.setAttribute("aria-label", "Collapse");
             toggle.setAttribute("title", "Collapse");
             const toggleText = toggle.querySelector(".toggle-text");
             if (toggleText) toggleText.textContent = "Collapse";
@@ -219,15 +206,18 @@ function initCollapsibleCodeBlocks() {
         wrapper.appendChild(showBar);
       }
 
-      // Wrap the block
       block.parentNode.insertBefore(wrapper, block);
       wrapper.appendChild(content);
       content.appendChild(block);
+
+      // Set initial max-height
+      if (isCollapsible) {
+        content.style.maxHeight = "500px";
+      }
     }
   });
 }
 
-// Initialize
 (function () {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initCollapsibleCodeBlocks);

@@ -155,7 +155,7 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow-x: hidden;
+    overflow-x: auto;
   }
 
   /* Adjust code block header and buttons on mobile */
