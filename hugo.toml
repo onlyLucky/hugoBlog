@@ -1,0 +1,123 @@
+baseURL = "/"
+theme = "mana"
+defaultContentLanguage = "zh"
+
+[pagination]
+  pageSize = 10
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+    style = "catppuccin-macchiato"
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[params]
+  enableIntegrity = false
+  relatedPostsCount = 3
+  description = "记录学习、分享技术、探索 3D 图形学"
+  author = "feynman"
+  heroTitleLine1 = "FEYNMAN"
+  heroTitleLine2 = "技术博客"
+  footerText = "使用 Hugo + Mana 主题构建"
+
+  [params.social]
+    github = "https://github.com/"
+
+  [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"
+    lightTheme = "catppuccin-frappe"
+
+  [params.copyright]
+    startYear = 2026
+    owner = "feynman"
+
+# 中文（默认）
+[languages.zh]
+  languageCode = "zh-CN"
+  languageName = "中文"
+  languageDirection = "ltr"
+  weight = 1
+  title = "feynman 的博客"
+
+  [languages.zh.params]
+    description = "记录学习、分享技术、探索 3D 图形学"
+    author = "feynman"
+    heroTitleLine1 = "FEYNMAN"
+    heroTitleLine2 = "技术博客"
+    custom404Message = "页面不存在"
+    footerText = "使用 Hugo + Mana 主题构建"
+
+  [[languages.zh.menus.main]]
+    name = "首页"
+    pageRef = "/"
+    weight = 10
+
+  [[languages.zh.menus.main]]
+    name = "文章"
+    pageRef = "/posts"
+    weight = 20
+
+  [[languages.zh.menus.main]]
+    name = "标签"
+    pageRef = "/tags"
+    weight = 30
+
+  [[languages.zh.menus.main]]
+    name = "关于"
+    pageRef = "/about"
+    weight = 40
+
+# English
+[languages.en]
+  languageCode = "en-US"
+  languageName = "English"
+  languageDirection = "ltr"
+  weight = 2
+  title = "feynman's blog"
+
+  [languages.en.params]
+    description = "Recording learning, sharing technology, exploring 3D graphics"
+    author = "feynman"
+    heroTitleLine1 = "FEYNMAN"
+    heroTitleLine2 = "Tech Blog"
+    custom404Message = "Page not found"
+    footerText = "Built with Hugo and Mana theme"
+
+  [[languages.en.menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+
+  [[languages.en.menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 20
+
+  [[languages.en.menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 30
+
+  [[languages.en.menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 40

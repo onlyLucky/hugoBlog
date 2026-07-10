@@ -1,0 +1,81 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="{{ site.Language.LanguageCode }}">
+<meta name="theme-color" content="#BD5FFF">
+<script>
+  // Set theme immediately to prevent flash
+  (function () {
+    const storedTheme = localStorage.getItem("theme");
+    const systemPrefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const theme = storedTheme || (systemPrefersLight ? "light" : "dark");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+  // Page transition: read direction before any external resources load
+  (function(){var t=sessionStorage.getItem('mana_pt');if(t){document.documentElement.setAttribute('data-page-enter',t);sessionStorage.removeItem('mana_pt');}})();
+  // Search index URL for current language (multilingual support)
+  window.MANA_SEARCH_INDEX_URL = '{{ "index.json" | relLangURL }}';
+  // Language prefixes for URL normalization in page transitions
+  window.MANA_LANG_PREFIXES = [{{ range $i, $lang := site.Languages }}{{ if $i }},{{ end }}'{{ $lang.Lang }}'{{ end }}];
+</script>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+<meta
+  name="description"
+  content="{{ if .Description }}
+    {{ .Description }}
+  {{ else if .IsHome }}
+    {{ site.Params.description }}
+  {{ else }}
+    {{ .Summary | plainify | truncate 160 }}
+  {{ end }}
+"
+>
+<meta name="author" content="{{ site.Params.author }}">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="{{ site.Language.LanguageCode }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- RSS -->
+{{ range .AlternativeOutputFormats }}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+{{ end }}
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+  media="print"
+  onload="this.media='all'">
+<noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</noscript>
+
+<!-- Favicon -->
+{{ partial "head/favicon.html" . }}
+
+<!-- CSS -->
+{{ partial "head/css.html" . }}
+
+<!-- KaTeX -->
+{{ partial "head/katex.html" . }}
+
+<!-- JSON-LD -->
+{{ partial "head/json-ld.html" . }}
