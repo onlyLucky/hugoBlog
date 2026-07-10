@@ -30,6 +30,24 @@ scrollToTop = "Scroll to top"
 home = "Home"
 recentPosts = "Recent Posts"
 
+# Posts
+posts = "Posts"
+readMore = "Read more"
+publishedOn = "Published on"
+updatedOn = "Updated on"
+minuteRead = "min read"
+
+# Archive
+archive = "Archive"
+archiveTitle = "Post Archive"
+noPosts = "No posts yet"
+postsCount = "posts"
+
+# Tags
+tags = "Tags"
+taggedWith = "Tagged: "
+tagsHelp = "Click any tag to view related posts"
+
 # List & filters
 filters = "Filters"
 searchTitle = "Search"
@@ -41,6 +59,8 @@ yearMonth = "Year & Month"
 allDates = "All Dates"
 clearFilters = "Clear Filters"
 postsUnit = "posts"
+searchNoResults = "No results found"
+searchNoTagsFound = "No tags found"
 
 # Pagination
 pageOf = "Page %s of %s"
@@ -56,14 +76,9 @@ paginationLast = "Last"
 
 # Navigation links
 backToHome = "Back to Home"
-readMore = "Read more"
-
-# Archive
-archive = "Archive"
 
 # Single post
 relatedPosts = "Related Posts"
-tags = "Tags"
 navPrev = "Previous"
 navNext = "Next"
 
@@ -74,11 +89,6 @@ readingTime = "min"
 # Table of contents
 tableOfContents = "Table of Contents"
 toggleToc = "Toggle table of contents"
-
-# Tags page
-tagsHelp = "Click any tag to view related posts"
-searchNoResults = "No results found"
-searchNoTagsFound = "No tags found"
 
 # Buy Me a Coffee
 buyMeACoffeeDescription = "Support me on Buy me a coffee!"
