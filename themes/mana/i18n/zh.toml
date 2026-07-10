@@ -1,0 +1,77 @@
+# Alert/Admonition translations
+note = "注意"
+tip = "提示"
+important = "重要"
+warning = "警告"
+caution = "小心"
+info = "信息"
+success = "成功"
+question = "问题"
+danger = "危险"
+bug = "缺陷"
+example = "示例"
+
+# Header & navigation
+menu = "菜单"
+search = "搜索"
+searchPlaceholder = "搜索..."
+clearSearch = "清除搜索"
+closeSearch = "关闭搜索"
+toggleMenu = "切换菜单"
+closeMenu = "关闭菜单"
+toggleTheme = "切换主题"
+language = "语言"
+
+# Accessibility
+skipToMain = "跳转到主要内容"
+scrollToTop = "回到顶部"
+
+# Home
+home = "首页"
+
+# Posts
+posts = "文章"
+readMore = "阅读全文"
+publishedOn = "发布于"
+updatedOn = "更新于"
+minuteRead = "分钟阅读"
+tableOfContents = "目录"
+
+# Archive
+archive = "归档"
+archiveTitle = "文章归档"
+noPosts = "暂无文章"
+postsCount = "篇文章"
+
+# Tags
+tags = "标签"
+taggedWith = "标签："
+
+# List & filters
+filters = "筛选"
+searchTitle = "搜索文章"
+searchTitlePlaceholder = "输入标题关键词..."
+searchTags = "搜索标签..."
+tagsLabel = "标签"
+allTags = "全部标签"
+yearMonth = "年月"
+allDates = "全部日期"
+clearFilters = "清除筛选"
+searchNoTagsFound = "未找到标签"
+searchNoResults = "未找到结果"
+postsUnit = "篇"
+
+# 404
+notFound = "页面不存在"
+notFoundMessage = "抱歉，您访问的页面不存在。"
+backToHome = "返回首页"
+
+# Footer
+copyright = "版权所有"
+allRightsReserved = "保留所有权利"
+
+# Buy Me a Coffee
+buyMeACoffeeDescription = "如果这个项目对您有帮助，请考虑请我喝杯咖啡！"
+
+# Related Posts
+relatedPosts = "相关文章"
