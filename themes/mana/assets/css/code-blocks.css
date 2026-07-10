@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 1rem;
   background: rgba(30, 30, 45, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -138,14 +138,34 @@
 
 /* Content wrapper */
 .code-block-content {
-  transition: opacity var(--transition-base);
-  overflow: visible;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease;
+  overflow: auto;
+  max-height: 500px;
 }
 
+/* Code area padding - consistent with header */
+.code-block-content pre,
+.code-block-content .highlight,
+.code-block-content .chroma {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.code-block-content pre {
+  padding: 1rem !important;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.code-block-content pre code {
+  font-family: var(--font-mono);
+}
+
+/* Collapsed state */
 .code-block-wrapper.collapsed .code-block-content {
   max-height: 150px;
   overflow: hidden;
-  opacity: 0.9;
   position: relative;
 }
 
@@ -155,13 +175,38 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50px;
-  /* Match the chroma code block background color */
+  height: 60px;
   background: linear-gradient(to bottom, transparent, #24273a);
   pointer-events: none;
 }
 
-/* Light theme - use light syntax theme background */
 [data-theme="light"] .code-block-wrapper.collapsed .code-block-content::after {
   background: linear-gradient(to bottom, transparent, #303446);
+}
+
+/* Scrollbar styling */
+.code-block-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.code-block-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-block-content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.code-block-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .code-block-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .code-block-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.25);
 }

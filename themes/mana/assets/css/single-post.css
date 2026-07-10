@@ -442,7 +442,7 @@
 
 .post-content-main .highlight pre {
   margin: 0;
-  padding: inherit;
+  padding: 1rem;
 }
 
 /* ── Inline code (not inside pre) ── */
