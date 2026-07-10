@@ -136,7 +136,48 @@
   transform: rotate(180deg);
 }
 
-/* Content wrapper */
+/* ── Show Code Bar (collapsed state) ── */
+.code-block-show {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(30, 30, 45, 0.4);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  user-select: none;
+}
+
+[data-theme="light"] .code-block-show {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.code-block-show:hover {
+  background: rgba(30, 30, 45, 0.6);
+  color: var(--accent-primary);
+}
+
+[data-theme="light"] .code-block-show:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--accent-primary);
+}
+
+.code-block-show svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.code-block-wrapper.collapsed .code-block-show {
+  display: flex;
+}
+
+/* ── Content wrapper ── */
 .code-block-content {
   transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.2s ease;
@@ -144,7 +185,14 @@
   max-height: 500px;
 }
 
-/* Code area padding - consistent with header */
+/* Collapsed: hide content completely */
+.code-block-wrapper.collapsed .code-block-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Code area padding */
 .code-block-content pre,
 .code-block-content .highlight,
 .code-block-content .chroma {
@@ -160,28 +208,6 @@
 
 .code-block-content pre code {
   font-family: var(--font-mono);
-}
-
-/* Collapsed state */
-.code-block-wrapper.collapsed .code-block-content {
-  max-height: 150px;
-  overflow: hidden;
-  position: relative;
-}
-
-.code-block-wrapper.collapsed .code-block-content::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background: linear-gradient(to bottom, transparent, #24273a);
-  pointer-events: none;
-}
-
-[data-theme="light"] .code-block-wrapper.collapsed .code-block-content::after {
-  background: linear-gradient(to bottom, transparent, #303446);
 }
 
 /* Scrollbar styling */
