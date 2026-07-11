@@ -14,7 +14,7 @@ A developer who loves technology, exploring the world of 3D graphics and web dev
 
 ## Contact
 
-- GitHub: [feynman](https://github.com/)
+- GitHub: [Feynman](https://github.com/)
 
 ## About This Site
 

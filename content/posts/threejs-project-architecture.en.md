@@ -4,7 +4,7 @@ meta_title: "Three.js 项目架构入门教程"
 description: "从零搭建 Vite + TypeScript + Three.js 项目，理解 Scene / Camera / Renderer 三件套，掌握 requestAnimationFrame + delta time 动画循环。"
 date: 2026-07-07T10:00:00+08:00
 categories: ["前端", "3D"]
-author: "feynman"
+author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d"]
 draft: false
 ---

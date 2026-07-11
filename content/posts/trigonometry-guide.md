@@ -5,7 +5,7 @@ description: "系统梳理三角函数的基本定义、公式、图像与反三
 date: 2026-07-05T10:00:00+08:00
 image: "/images/blog/trigonometry/all_functions_graph.png"
 categories: ["数学", "3D基础"]
-author: "feynman"
+author: "Feynman"
 tags: ["数学", "三角函数", "3d基础", "threejs"]
 draft: false
 ---

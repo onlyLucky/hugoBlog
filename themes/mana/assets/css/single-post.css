@@ -523,6 +523,35 @@
   font-style: normal;
 }
 
+/* Blockquotes inside list items: reset list padding */
+.post-content-main li blockquote.blockquote-regular,
+.post-content-main dd blockquote.blockquote-regular {
+  margin-left: -1.5em;
+  margin-right: 0;
+  padding-left: var(--spacing-lg);
+}
+
+/* Code, tables, figures inside list items: reset list padding */
+.post-content-main li pre,
+.post-content-main li code,
+.post-content-main li table,
+.post-content-main li figure,
+.post-content-main li img,
+.post-content-main dd pre,
+.post-content-main dd code,
+.post-content-main dd table,
+.post-content-main dd figure,
+.post-content-main dd img {
+  margin-left: -1.5em;
+  padding-left: 0;
+}
+
+/* Task list items */
+.post-content-main .task-list li blockquote.blockquote-regular {
+  margin-left: 0;
+  padding-left: var(--spacing-lg);
+}
+
 .post-content-main blockquote p {
   margin-bottom: var(--spacing-sm);
 }

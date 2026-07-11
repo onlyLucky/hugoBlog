@@ -14,7 +14,7 @@ title: "关于"
 
 ## 联系方式
 
-- GitHub: [feynman](https://github.com/)
+- GitHub: [Feynman](https://github.com/)
 
 ## 关于本站
 

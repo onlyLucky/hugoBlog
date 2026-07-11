@@ -59,6 +59,68 @@
   margin-bottom: var(--spacing-md);
 }
 
+.about-content-full ul {
+  padding-left: 1.5em;
+  margin-bottom: var(--spacing-md);
+}
+
+.about-content-full li {
+  margin-bottom: 0.4em;
+}
+
+.about-content-full blockquote.blockquote-regular {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-left: 4px solid var(--accent-primary);
+  background: var(--bg-secondary);
+  border-radius: 0 8px 8px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.about-content-full blockquote.blockquote-regular p {
+  margin-bottom: 0;
+}
+
+.about-content-full pre,
+.about-content-full code {
+  padding-left: 0;
+}
+
+.about-content-full table {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.about-content-full figure,
+.about-content-full img {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Blockquotes inside list items: reset list padding */
+.about-content-full li blockquote.blockquote-regular,
+.about-content-full dd blockquote.blockquote-regular {
+  margin-left: -1.5em;
+  margin-right: 0;
+  padding-left: var(--spacing-lg);
+}
+
+/* Code, tables, figures inside list items: reset list padding */
+.about-content-full li pre,
+.about-content-full li code,
+.about-content-full li table,
+.about-content-full li figure,
+.about-content-full li img,
+.about-content-full dd pre,
+.about-content-full dd code,
+.about-content-full dd table,
+.about-content-full dd figure,
+.about-content-full dd img {
+  margin-left: -1.5em;
+  padding-left: 0;
+}
+
 .about-content-full a {
   color: var(--accent-primary);
   text-decoration: underline;
