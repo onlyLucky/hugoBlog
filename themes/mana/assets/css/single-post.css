@@ -103,7 +103,7 @@
 /* Table of Contents - Burger Menu Style */
 .post-toc {
   position: sticky;
-  top: calc(var(--spacing-lg) + 60px);
+  top: calc(var(--spacing-lg) + var(--header-height));
   width: 260px;
   flex-shrink: 0;
   padding: 0;

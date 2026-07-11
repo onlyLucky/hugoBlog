@@ -1,0 +1,61 @@
+/* Shader Background - 随 hero-section 滚动 */
+.shader-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+  opacity: 0;
+  animation: shader-fade-in 1.5s ease-out 0.3s forwards;
+}
+
+@keyframes shader-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Hero section: 全屏首屏，shader 延伸覆盖 header 区域 */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: calc(-1 * var(--header-height));
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 0;
+}
+
+/* 首页 main 去掉顶部 padding，让 hero 贴顶 */
+.home-main {
+  padding-top: 0 !important;
+}
+
+/* Hero container above shader */
+.hero-section .hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Add subtle overlay for better text readability */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}

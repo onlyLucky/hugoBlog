@@ -1,5 +1,23 @@
 /* Header & Navigation */
 
+:root {
+  --header-height: 69px; /* 匹配 header 实际高度 */
+}
+
+/* 移动端：header-nav padding 不变但 logo 更小，实际约 56px */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+  }
+}
+
+/* 小屏手机 */
+@media (max-width: 480px) {
+  :root {
+    --header-height: 48px;
+  }
+}
+
 .sticky-header {
   position: sticky;
   top: 0;

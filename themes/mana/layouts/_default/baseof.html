@@ -13,8 +13,17 @@
       </div>
       <div class="reading-progress-bar" aria-hidden="true"></div>
     </header>
+    <script>
+      // 动态测量 header 高度，设置 CSS 变量
+      (function() {
+        var h = document.querySelector('.sticky-header');
+        if (h) {
+          document.documentElement.style.setProperty('--header-height', h.offsetHeight + 'px');
+        }
+      })();
+    </script>
 
-    <main id="main-content" class="flex-1" role="main">
+    <main id="main-content" class="flex-1{{ if .IsHome }} home-main{{ end }}" role="main">
       {{ block "main" . }}{{ end }}
     </main>
 

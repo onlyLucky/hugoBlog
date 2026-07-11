@@ -11,5 +11,6 @@
 {{ $languageSwitcher := resources.Get "js/language-switcher.js" }}
 {{ $pageTransitions := resources.Get "js/page-transitions.js" }}
 {{ $readingProgress := resources.Get "js/reading-progress.js" }}
-{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks $blockquotes $languageSwitcher $pageTransitions $readingProgress | resources.Concat "js/main.js" | minify | fingerprint }}
+{{ $shaderBg := resources.Get "js/shader-bg.js" }}
+{{ $js := slice $constants $utils $themeToggle $search $scrollToTop $navigation $toc $filters $codeBlocks $blockquotes $languageSwitcher $pageTransitions $readingProgress $shaderBg | resources.Concat "js/main.js" | minify | fingerprint }}
 <script src="{{ $js.RelPermalink }}" defer></script>

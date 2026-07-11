@@ -1,14 +1,23 @@
 /* Hero Section */
 
 .hero-section {
-  width: 100%;
-  padding: var(--spacing-2xl) var(--spacing-lg);
-  margin-bottom: var(--spacing-2xl);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: calc(-1 * var(--header-height));
+  margin-left: calc(50% - 50vw);
+  margin-bottom: 0;
 }
 
 .hero-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content {
