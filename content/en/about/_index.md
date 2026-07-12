@@ -14,7 +14,7 @@ A developer who loves technology, exploring the world of 3D graphics and web dev
 
 ## Contact
 
-- GitHub: [Feynman](https://github.com/)
+- GitHub: [Feynman](https://github.com/onlyLucky)
 
 ## About This Site
 

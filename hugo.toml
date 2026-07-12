@@ -48,7 +48,7 @@ defaultContentLanguage = "zh"
     enableResize = true
 
   [params.social]
-    github = "https://github.com/"
+    github = "https://github.com/onlyLucky"
 
   [params.codeHighlight]
     darkTheme = "catppuccin-macchiato"

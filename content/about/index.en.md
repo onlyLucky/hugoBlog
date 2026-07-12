@@ -25,7 +25,7 @@ I aim to connect scattered knowledge points into a complete knowledge system thr
 
 ## Contact
 
-- GitHub: [feynman](https://github.com/)
+- GitHub: [Feynman](https://github.com/onlyLucky)
 
 ## About This Site
 
