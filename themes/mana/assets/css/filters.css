@@ -105,7 +105,7 @@
   display: flex;
   gap: var(--spacing-md);
   align-items: flex-end;
-  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg) var(--spacing-lg);
   max-height: 300px;
   overflow: visible;
   opacity: 1;
