@@ -1,0 +1,317 @@
+<!-- Terminal Hero Window - MacOS style with typewriter effect -->
+<aside class="hero-terminal" aria-hidden="true">
+  <div class="terminal-glass">
+    <div class="terminal-titlebar">
+      <span class="terminal-btn terminal-btn-close"></span>
+      <span class="terminal-btn terminal-btn-minimize"></span>
+      <span class="terminal-btn terminal-btn-maximize"></span>
+      <span class="terminal-title">feynman — bash — 80×24</span>
+    </div>
+    <div class="terminal-body">
+      <pre class="terminal-code" id="terminal-code"></pre>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .hero-terminal {
+    flex: 0 0 560px;
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+    margin-top: var(--spacing-xl);
+  }
+
+  .terminal-glass {
+    background: var(--terminal-glass-bg);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid var(--terminal-glass-border);
+    border-radius: 12px;
+    box-shadow: var(--terminal-glass-shadow);
+    overflow: hidden;
+  }
+
+  .terminal-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--terminal-titlebar-bg);
+    border-bottom: 1px solid var(--terminal-glass-border);
+  }
+
+  .terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: opacity 0.2s ease;
+  }
+
+  .terminal-btn-close { background: #ff5f57; }
+  .terminal-btn-minimize { background: #febc2e; }
+  .terminal-btn-maximize { background: #28c840; }
+
+  .terminal-glass:hover .terminal-btn-close { box-shadow: 0 0 4px #ff5f57; }
+  .terminal-glass:hover .terminal-btn-minimize { box-shadow: 0 0 4px #febc2e; }
+  .terminal-glass:hover .terminal-btn-maximize { box-shadow: 0 0 4px #28c840; }
+
+  .terminal-title {
+    flex: 1;
+    text-align: left;
+    font-size: 0.8rem;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: var(--terminal-text-dim);
+    opacity: 0.7;
+    user-select: none;
+  }
+
+  .terminal-body {
+    padding: 20px;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-code {
+    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--terminal-text);
+    white-space: pre-wrap;
+    word-break: break-all;
+    min-height: 240px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    overflow: hidden;
+  }
+
+  /* Syntax highlighting */
+  .token-keyword { color: var(--syn-keyword); font-weight: 500; }
+  .token-string { color: var(--syn-string); }
+  .token-comment { color: var(--syn-comment); font-style: italic; opacity: 0.75; }
+  .token-func { color: var(--syn-func); }
+  .token-prompt { color: var(--syn-prompt); font-weight: 600; }
+  .token-output { color: var(--terminal-text-dim); }
+
+  /* Inline cursor - flows with text */
+  .token-cursor {
+    display: inline;
+    color: var(--syn-prompt);
+    animation: cursor-blink 1s step-end infinite;
+  }
+
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-terminal {
+      flex: none;
+      max-width: 100%;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .terminal-body { padding: 12px; min-height: 150px; }
+    .terminal-code { font-size: 0.75rem; line-height: 1.6; }
+    .terminal-title { font-size: 0.7rem; }
+  }
+</style>
+
+<script>
+(function () {
+  const examples = [
+    {
+      code: `<span class="token-comment"># Python</span>\n<span class="token-keyword">print</span>(<span class="token-string">"Hello World!"</span>)`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// Java</span>\nSystem.out.<span class="token-func">println</span>(<span class="token-string">"Hello World!"</span>);`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// C++</span>\nstd::cout &lt;&lt; <span class="token-string">"Hello World!"</span> &lt;&lt; std::endl;`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// Rust</span>\n<span class="token-func">println!</span>(<span class="token-string">"Hello World!"</span>);`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// Go</span>\nfmt.<span class="token-func">Println</span>(<span class="token-string">"Hello World!"</span>)`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// JavaScript</span>\nconsole.<span class="token-func">log</span>(<span class="token-string">"Hello World!"</span>);`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment"># Shell</span>\n<span class="token-func">echo</span> <span class="token-string">"Hello World!"</span>`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// Swift</span>\n<span class="token-func">print</span>(<span class="token-string">"Hello World!"</span>)`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// Kotlin</span>\n<span class="token-func">println</span>(<span class="token-string">"Hello World!"</span>)`,
+      output: 'Hello World!'
+    },
+    {
+      code: `<span class="token-comment">// Rust 闭包</span>\n(|| <span class="token-func">println!</span>(<span class="token-string">"Hello World!"</span>))();`,
+      output: 'Hello World!'
+    }
+  ];
+
+  const CURSOR = '<span class="token-cursor">\u2588</span>';
+
+  const codeEl = document.getElementById('terminal-code');
+  if (!codeEl) return;
+
+  let animId = null;
+  let currentExample = 0;
+  let pos = 0;
+  let phase = 'typing';
+  let pauseEnd = 0;
+  let finalPhase = false;
+
+  const TYPE_SPEED = 22;
+  const OUTPUT_DELAY = 300;
+  const OUTPUT_SPEED = 15;
+  const CLEAR_DELAY = 800;
+  const PROMPT_PAUSE = 400;
+  const FINAL_PAUSE = 1500;
+
+  function getPlainText(html) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent;
+  }
+
+  function animate() {
+    const now = performance.now();
+    if (now < pauseEnd) {
+      animId = requestAnimationFrame(animate);
+      return;
+    }
+
+    if (finalPhase) {
+      animateFinal();
+      return;
+    }
+
+    const ex = examples[currentExample];
+    const html = ex.code;
+    const text = getPlainText(html);
+
+    if (phase === 'typing') {
+      if (pos <= text.length) {
+        let visible = '';
+        let htmlPos = 0;
+        let charCount = 0;
+
+        while (htmlPos < html.length && charCount < pos) {
+          if (html[htmlPos] === '<') {
+            const end = html.indexOf('>', htmlPos);
+            if (end !== -1) {
+              visible += html.substring(htmlPos, end + 1);
+              htmlPos = end + 1;
+              continue;
+            }
+          }
+          visible += html[htmlPos];
+          htmlPos++;
+          charCount++;
+        }
+
+        codeEl.innerHTML = '<span class="token-prompt">$ </span>' + visible + CURSOR;
+        pos++;
+        pauseEnd = now + TYPE_SPEED;
+      } else {
+        phase = 'output-pause';
+        pauseEnd = now + OUTPUT_DELAY;
+      }
+    } else if (phase === 'output-pause') {
+      const outputText = ex.output;
+      let outputPos = 0;
+      phase = 'output-typing';
+
+      function typeOutput() {
+        const now2 = performance.now();
+        if (now2 < pauseEnd) {
+          animId = requestAnimationFrame(typeOutput);
+          return;
+        }
+        if (outputPos <= outputText.length) {
+          codeEl.innerHTML =
+            '<span class="token-prompt">$ </span>' + html + '\n<span class="token-output">' +
+            outputText.substring(0, outputPos) + '</span>' + CURSOR;
+          outputPos++;
+          pauseEnd = now2 + OUTPUT_SPEED;
+          animId = requestAnimationFrame(typeOutput);
+        } else {
+          phase = 'clear';
+          pauseEnd = now2 + CLEAR_DELAY;
+          animId = requestAnimationFrame(animate);
+        }
+      }
+      animId = requestAnimationFrame(typeOutput);
+      return;
+    } else if (phase === 'clear') {
+      currentExample++;
+      if (currentExample >= examples.length) {
+        finalPhase = true;
+        codeEl.innerHTML = CURSOR;
+        pos = 0;
+        pauseEnd = now + PROMPT_PAUSE;
+      } else {
+        pos = 0;
+        phase = 'typing';
+      }
+    }
+
+    animId = requestAnimationFrame(animate);
+  }
+
+  function animateFinal() {
+    const now = performance.now();
+    if (now < pauseEnd) {
+      animId = requestAnimationFrame(animateFinal);
+      return;
+    }
+
+    const text = 'Hello World!';
+    if (pos <= text.length) {
+      codeEl.innerHTML =
+        '<span class="token-prompt">$ </span>' +
+        '<span class="token-string">' + text.substring(0, pos) + '</span>' + CURSOR;
+      pos++;
+      pauseEnd = now + TYPE_SPEED * 2;
+    } else {
+      setTimeout(() => {
+        codeEl.innerHTML = CURSOR;
+        pos = 0;
+        finalPhase = false;
+        currentExample = 0;
+        phase = 'typing';
+        pauseEnd = performance.now() + PROMPT_PAUSE;
+        animId = requestAnimationFrame(animate);
+      }, FINAL_PAUSE);
+      return;
+    }
+
+    animId = requestAnimationFrame(animateFinal);
+  }
+
+  animId = requestAnimationFrame(animate);
+})();
+</script>

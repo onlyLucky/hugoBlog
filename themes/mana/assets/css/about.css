@@ -8,6 +8,7 @@
 .about-header {
   text-align: center;
   margin-bottom: var(--spacing-2xl);
+  padding-top: var(--spacing-xl);
   padding-bottom: var(--spacing-xl);
   border-bottom: 1px solid var(--border-color);
 }
@@ -19,6 +20,7 @@
   object-fit: cover;
   border: 3px solid var(--accent-primary);
   margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-lg)
 }
 
 .about-page-name {
@@ -128,4 +130,28 @@
 
 .about-content-full a:hover {
   color: var(--accent-hover);
+}
+
+/* 响应式：关于页头像 */
+@media (max-width: 768px) {
+  .about-page-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .about-page-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-page-avatar {  
+    width: 72px;
+    height: 72px;
+    border-width: 2px;
+  }
+
+  .about-page-description {
+    font-size: 0.9rem;
+  }
 }

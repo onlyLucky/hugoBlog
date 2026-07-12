@@ -8,8 +8,10 @@
     text-align: center;
   }
 
-  .hero-image {
-    order: -1;
+  .hero-terminal {
+    order: 1;
+    margin-top: var(--spacing-md);
+    margin-bottom: 0;
   }
 
   .hero-logo,
@@ -20,6 +22,24 @@
   .hero-title-line1,
   .hero-title-line2 {
     font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  /* Mobile terminal sizing */
+  .hero-terminal {
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    text-align: left;
+  }
+
+  .terminal-body {
+    padding: 14px !important;
+    min-height: 240px !important;
+  }
+
+  .terminal-code {
+    font-size: 0.8rem !important;
+    min-height: 200px !important;
   }
 }
 
@@ -45,7 +65,7 @@
 /* General Responsive */
 @media (max-width: 1024px) {
   .header-logo .logo-link {
-    font-size: 1.125rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -68,7 +88,7 @@
   }
 
   .header-logo .logo-link {
-    font-size: 0.875rem;
+    font-size: 1.125rem;
     max-width: 100%;
   }
 
@@ -203,7 +223,7 @@
   }
 
   .header-logo .logo-link {
-    font-size: 0.75rem;
+    font-size: 1rem;
     max-width: 100%;
   }
 
@@ -260,5 +280,26 @@
     min-width: 1.5rem;
     height: 1.5rem;
     padding: 0.25rem;
+  }
+
+  /* Small phone terminal */
+  .terminal-body {
+    padding: 10px !important;
+    min-height: 180px !important;
+  }
+
+  .terminal-code {
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
+    min-height: 140px !important;
+  }
+
+  .terminal-title {
+    font-size: 0.65rem !important;
+  }
+
+  .terminal-btn {
+    width: 10px;
+    height: 10px;
   }
 }

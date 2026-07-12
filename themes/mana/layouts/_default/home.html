@@ -28,30 +28,7 @@
             </div>
           {{ end }}
         </div>
-        <div class="hero-image">
-          {{ $avatarUrl := site.Params.avatar.home.url | default site.Params.avatar.url }}
-          {{ $avatarAsset := site.Params.avatar.home.assetPath | default site.Params.avatar.assetPath }}
-          {{ $enableResize := site.Params.avatar.home.enableResize | default site.Params.avatar.enableResize | default false }}
-
-          {{ if $avatarUrl }}
-            <img src="{{ $avatarUrl }}" alt="{{ site.Title }}" class="hero-logo">
-          {{ else if $avatarAsset }}
-            {{ with resources.Get $avatarAsset }}
-              {{ if $enableResize }}
-                {{ with .Resize "512x" }}
-                  <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="hero-logo">
-                {{ end }}
-              {{ else }}
-                <img src="{{ .RelPermalink }}" alt="{{ site.Title }}" class="hero-logo">
-              {{ end }}
-            {{ end }}
-          {{ else }}
-            <img
-              src="/favicon/logo-transparent/android-chrome-512x512.png"
-              alt="{{ site.Title }}"
-              class="hero-logo">
-          {{ end }}
-        </div>
+        {{ partial "hero-terminal.html" . }}
       </div>
     </div>
   </section>

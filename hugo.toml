@@ -39,6 +39,14 @@ defaultContentLanguage = "zh"
   heroTitleLine2 = "技术博客"
   footerText = "使用 Hugo + Mana 主题构建"
 
+  [params.avatar]
+    assetPath = "images/avatar.jpg"
+    enableResize = true
+
+  [params.avatar.about]
+    assetPath = "images/avatar.jpg"
+    enableResize = true
+
   [params.social]
     github = "https://github.com/"
 

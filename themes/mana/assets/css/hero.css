@@ -14,8 +14,9 @@
 
 .hero-container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: var(--spacing-2xl) var(--spacing-lg);
+  padding: var(--spacing-2xl) var(--spacing-2xl);
   position: relative;
   z-index: 2;
 }
@@ -25,6 +26,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-2xl);
   align-items: center;
+  min-height: 60vh;
 }
 
 .hero-text {
