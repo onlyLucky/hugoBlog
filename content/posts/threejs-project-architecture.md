@@ -13,6 +13,10 @@ draft: false
 
 > Three.js 的一切始于三个对象：Scene（舞台）、Camera（镜头）、Renderer（投影仪）。掌握这三件套，就掌握了 3D 世界的入场券。
 
+![运行效果：旋转浮动的法线材质立方体](/images/posts/project-architecture-demo.png)
+
+*法线材质立方体在黑色背景上旋转浮动，不同面呈现不同颜色（法线方向映射为 RGB）*
+
 ## 01 学习目标
 
 本节课从零搭建一个完整的 Three.js 项目，目标是：
@@ -125,13 +129,27 @@ requestAnimationFrame(tick)
 
 ## 08 复盘自测
 
-1. **requestAnimationFrame 里为什么要用 delta time？**
-   > 因为不同设备帧率不同，用 delta time 让动画速度和时间挂钩而不是和帧率挂钩。
+1. **Scene、Camera、Renderer 三者各自的职责是什么？**
+   > Scene 放置所有物体、灯光、雾、背景的容器；Camera 决定观众看到什么（位置、角度、范围）；Renderer 把 3D 场景计算成 2D 像素画到 canvas 上。
 
-2. **相机的 fov、near、far 分别控制什么？**
-   > fov（视场角）：视野的宽窄，像相机镜头的广角/长焦。
-   > near：比这更近的物体不渲染。
-   > far：比这更远的物体不渲染。
+2. **为什么 camera.position.z = 5 而不是 0？**
+   > 相机默认在 (0, 0, 0)，立方体也在 (0, 0, 0)。相机在物体内部，看不到外表面。往后退 5 个单位才能看到完整的立方体。
+
+3. **setPixelRatio 为什么卡在 2？**
+   > 超过 2 像素量翻倍但肉眼几乎看不出区别，白白浪费 GPU。devicePixelRatio 是 1 个 CSS 像素等于几个物理像素，Retina 屏通常是 2 或 3。
+
+4. **requestAnimationFrame 里为什么要用 delta time？**
+   > 不同设备帧率不同（60fps vs 144fps）。用 delta time 让动画速度和时间挂钩而不是和帧率挂钩，保证在所有设备上旋转速度一致。
+
+## 09 源码位置
+
+本节课完整源码：
+
+- **仓库**：[Three.js 造物日记](https://github.com/onlyLucky/CreationDiary)
+- **目录**：`01-project-architecture/`
+- **关键文件**：
+  - `main.ts` — 主入口，SceneManager 初始化 + 立方体创建 + 动画循环
+  - `src/core/SceneManager.ts` — 场景管理器（可复用核心模块）
 
 ---
 

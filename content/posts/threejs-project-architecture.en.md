@@ -1,35 +1,39 @@
 ---
-title: "01｜从零搭建 3D 项目架构"
-meta_title: "Three.js 项目架构入门教程"
-description: "从零搭建 Vite + TypeScript + Three.js 项目，理解 Scene / Camera / Renderer 三件套，掌握 requestAnimationFrame + delta time 动画循环。"
+title: "01 | Building 3D Project Architecture from Scratch"
+meta_title: "Three.js Project Architecture Tutorial"
+description: "Build a Vite + TypeScript + Three.js project from scratch, understand the Scene / Camera / Renderer trio, master requestAnimationFrame + delta time animation loop."
 date: 2026-07-07T10:00:00+08:00
-categories: ["前端", "3D"]
+categories: ["Frontend", "3D"]
 series: ["Three.js 造物日记"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d"]
 draft: false
 ---
 
-> Three.js 的一切始于三个对象：Scene（舞台）、Camera（镜头）、Renderer（投影仪）。掌握这三件套，就掌握了 3D 世界的入场券。
+> Everything in Three.js starts with three objects: Scene (stage), Camera (lens), Renderer (projector). Master this trio and you have your ticket to the 3D world.
 
-## 01 学习目标
+![Running effect: rotating floating normal material cube](/images/posts/project-architecture-demo.png)
 
-本节课从零搭建一个完整的 Three.js 项目，目标是：
+*Normal material cube rotating and floating on a black background, different faces showing different colors (normal direction mapped to RGB)*
 
-- 搭建 Vite + TypeScript + Three.js 项目脚手架
-- 理解 Scene / Camera / Renderer 三件套的职责
-- 掌握 requestAnimationFrame + delta time 动画循环
-- 学会窗口自适应和像素比设置
+## 01 Learning Objectives
 
-## 02 Three.js 三件套
+This lesson builds a complete Three.js project from scratch:
 
-Three.js 的一切始于三个对象：
+- Set up Vite + TypeScript + Three.js project scaffold
+- Understand the responsibilities of Scene / Camera / Renderer
+- Master requestAnimationFrame + delta time animation loop
+- Learn window resize handling and pixel ratio settings
 
-| 对象 | 类比 | 职责 |
-|------|------|------|
-| **Scene** | 舞台 | 放置所有物体、灯光、相机的容器 |
-| **Camera** | 摄像机 | 决定观众看到什么（位置、角度、范围） |
-| **Renderer** | 投影仪 | 把 3D 场景计算成 2D 像素画到 canvas 上 |
+## 02 The Three.js Trio
+
+Everything in Three.js starts with three objects:
+
+| Object | Analogy | Responsibility |
+|--------|---------|----------------|
+| **Scene** | Stage | Container for all objects, lights, cameras |
+| **Camera** | Lens | Determines what the viewer sees (position, angle, range) |
+| **Renderer** | Projector | Calculates 3D scene into 2D pixels on canvas |
 
 ```typescript
 const scene = new THREE.Scene()
@@ -37,75 +41,66 @@ const camera = new THREE.PerspectiveCamera(75, width/height, 0.1, 1000)
 const renderer = new THREE.WebGLRenderer({ canvas })
 ```
 
-## 03 动画循环 + Delta Time
+## 03 Animation Loop + Delta Time
 
-**为什么需要 delta time？**
+**Why delta time?**
 
-不同设备帧率不同（60fps vs 144fps）。如果直接写 `rotation += 0.01`，144fps 的设备转速是 60fps 的 2.4 倍。
+Different devices have different frame rates (60fps vs 144fps). If you write `rotation += 0.01`, a 144fps device rotates 2.4x faster than 60fps.
 
-**解决方案**：乘以 delta（上一帧到这一帧经过的秒数），保证速度与时间挂钩，与帧率无关。
+**Solution**: Multiply by delta (seconds since last frame), ensuring speed is tied to time, not frame rate.
 
 ```typescript
-// 错误：帧率相关
+// Wrong: frame rate dependent
 cube.rotation.x += 0.01
 
-// 正确：时间相关
-cube.rotation.x += speed * delta  // delta 单位是秒
+// Correct: time dependent
+cube.rotation.x += speed * delta  // delta is in seconds
 ```
 
-**requestAnimationFrame 的时间戳**：
-- 参数 `now` 是毫秒级时间戳（`performance.now()` 的值）
-- `delta = (now - lastTime) / 1000` 转成秒
+## 04 Modular Design: SceneManager
 
-## 04 模块化设计：SceneManager
+Encapsulate Scene/Camera/Renderer into a class for unified management:
 
-把 Scene/Camera/Renderer 封装成一个类，统一管理：
+| Method | Purpose |
+|--------|---------|
+| `onUpdate(callback)` | Register per-frame callback, receives (delta, elapsed) |
+| `registerDisposable(resource)` | Register resource for auto-cleanup on dispose |
+| `start()` / `stop()` | Control animation loop |
+| `dispose()` | Clean up all resources, prevent memory leaks |
 
-| 方法 | 作用 |
-|------|------|
-| `onUpdate(callback)` | 注册每帧回调，接收 (delta, elapsed) |
-| `registerDisposable(resource)` | 注册资源，dispose 时自动清理 |
-| `start()` / `stop()` | 控制动画循环 |
-| `dispose()` | 清理所有资源，防止内存泄漏 |
+## 05 Window Resize Handling
 
-**为什么不用全局变量？**
-- 场景管理器可以复用（多场景切换）
-- 资源清理有统一入口
-- 回调列表方便扩展
-
-## 05 窗口自适应
-
-两个关键操作，顺序不能错：
+Two key operations, order matters:
 
 ```typescript
-// 1. 先更新相机宽高比
+// 1. Update camera aspect ratio first
 camera.aspect = width / height
-camera.updateProjectionMatrix()  // 必须调用，否则不生效
+camera.updateProjectionMatrix()  // Must call, otherwise won't take effect
 
-// 2. 再更新渲染器尺寸
+// 2. Then update renderer size
 renderer.setSize(width, height)
 ```
 
-## 06 像素比（Pixel Ratio）
+## 06 Pixel Ratio
 
 ```typescript
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 ```
 
-- `window.devicePixelRatio`：Retina 屏是 2 或 3
-- 为什么要 `Math.min(..., 2)`？超过 2 像素量翻倍但肉眼几乎看不出区别，白白浪费 GPU
+- `window.devicePixelRatio`: Retina screens are 2 or 3
+- Why cap at 2? Beyond 2, pixel count doubles but is barely visible, wasting GPU
 
-## 07 速查表
+## 07 Quick Reference
 
-### Three.js 三件套
+### The Three.js Trio
 
 ```
-Scene（舞台）→ Camera（镜头）→ Renderer（投影仪）
+Scene (stage) → Camera (lens) → Renderer (projector)
      ↑                                ↓
-  物体/灯光                        canvas 像素
+  Objects/lights                  canvas pixels
 ```
 
-### 动画循环
+### Animation Loop
 
 ```
 requestAnimationFrame(tick)
@@ -114,7 +109,7 @@ requestAnimationFrame(tick)
   → renderer.render(scene, camera)
 ```
 
-### 窗口自适应顺序
+### Window Resize Order
 
 ```
 1. camera.aspect = w/h
@@ -122,16 +117,30 @@ requestAnimationFrame(tick)
 3. renderer.setSize(w, h)
 ```
 
-## 08 复盘自测
+## 08 Self-Review Quiz
 
-1. **requestAnimationFrame 里为什么要用 delta time？**
-   > 因为不同设备帧率不同，用 delta time 让动画速度和时间挂钩而不是和帧率挂钩。
+1. **What are the responsibilities of Scene, Camera, and Renderer?**
+   > Scene is a container for all objects, lights, fog, and background; Camera determines what the viewer sees (position, angle, range); Renderer calculates the 3D scene into 2D pixels on canvas.
 
-2. **相机的 fov、near、far 分别控制什么？**
-   > fov（视场角）：视野的宽窄，像相机镜头的广角/长焦。
-   > near：比这更近的物体不渲染。
-   > far：比这更远的物体不渲染。
+2. **Why is camera.position.z = 5 instead of 0?**
+   > The camera defaults to (0, 0, 0), same as the cube. Being inside the object means you can't see its outer surface. Moving back 5 units shows the complete cube.
+
+3. **Why is setPixelRatio capped at 2?**
+   > Beyond 2, pixel count doubles but is barely visible to the eye, wasting GPU. devicePixelRatio is how many physical pixels per CSS pixel; Retina screens are typically 2 or 3.
+
+4. **Why use delta time in requestAnimationFrame?**
+   > Different devices have different frame rates (60fps vs 144fps). Delta time ties animation speed to time rather than frame rate, ensuring consistent rotation speed across all devices.
+
+## 09 Source Code
+
+Complete source code for this lesson:
+
+- **Repository**: [Three.js Creation Diary](https://github.com/onlyLucky/CreationDiary)
+- **Directory**: `01-project-architecture/`
+- **Key files**:
+  - `main.ts` — Main entry, SceneManager initialization + cube creation + animation loop
+  - `src/core/SceneManager.ts` — Scene manager (reusable core module)
 
 ---
 
-> 本文是 Three.js + GLSL + WebGPU 学习系列的第 1 篇笔记。课程评分：8.5/10。
+> This is the 1st note in the Three.js + GLSL + WebGPU learning series. Course rating: 8.5/10.

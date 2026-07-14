@@ -169,3 +169,34 @@ function createCheckerTexture(size = 256, squares = 8): THREE.CanvasTexture {
 | `group.add(mesh)` | 把物体加入组 |
 | `new THREE.MeshBasicMaterial({ wireframe: true })` | 线框材质 |
 | `new THREE.CanvasTexture(canvas)` | 从 canvas 创建纹理 |
+
+## 07 复盘自测
+
+1. **SphereGeometry 的 widthSegments 从 32 改成 8，球体会发生什么变化？为什么？**
+   > 球体会变粗糙，能看到多边形的棱角。因为分段数减少，顶点和面变少了。分段数建议用 2 的幂（8、16、32），GPU 对 2 的幂有优化，且能产生更均匀的三角形分布。
+
+2. **BoxGeometry 的 wireframe 模式下，你能看到什么？**
+   > 能看到立方体的所有边线，包括背面的边。Wireframe 模式只渲染面的边，不渲染面本身，用 `gl.LINE_STRIP` 替代 `gl.TRIANGLES`。
+
+3. **PlaneGeometry 默认在哪个平面？怎么做地面？**
+   > 默认在 XY 平面。做地面需要绕 X 轴旋转 90 度：`rotation.x = -Math.PI / 2`，让平面水平朝上。
+
+4. **CylinderGeometry 的 radiusTop = 0 会变成什么？radiusTop ≠ radiusBottom 呢？**
+   > radiusTop = 0 是圆锥体；radiusTop = radiusBottom 是圆柱体；radiusTop ≠ radiusBottom 是圆台。三种情况对应不同的几何形状。
+
+5. **如何用多个图元组合成一个可整体移动的物体？**
+   > 用 `THREE.Group()` 创建一个组，把各个 Mesh 用 `group.add(mesh)` 加进去，然后移动/旋转整个 group 即可。组内的子物体会继承父级的变换。
+
+## 08 源码位置
+
+本节课完整源码：
+
+- **仓库**：[Three.js 造物日记](https://github.com/onlyLucky/CreationDiary)
+- **目录**：`02-primitives/`
+- **关键文件**：
+  - `main.ts` — 主入口，场景搭建 + 5 种几何体 + Wireframe 演示
+  - `createCheckerTexture()` — 棋盘格纹理生成函数
+
+---
+
+> 本文是 Three.js + GLSL + WebGPU 学习系列的第 2 篇笔记。课程评分：9.5/10。

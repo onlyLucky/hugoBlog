@@ -11,7 +11,7 @@
     </header>
 
     <div class="posts-list">
-      {{ range .Pages.ByDate.Reverse }}
+      {{ range .Pages.ByTitle }}
         {{ partial "post-card.html" (dict "page" . "limit" 3) }}
       {{ end }}
     </div>
