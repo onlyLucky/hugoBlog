@@ -1,1 +1,41 @@
 /* Add your own custom styles here */
+
+/* Series badge in post meta */
+.post-series {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.post-series .meta-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.series-link {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  background: var(--accent-primary, #7c3aed);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.series-link:hover {
+  opacity: 0.85;
+}
+
+/* 合集列表描述：最多2行，超出省略号 */
+.series-item .post-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

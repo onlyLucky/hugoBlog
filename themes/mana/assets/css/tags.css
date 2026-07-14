@@ -438,6 +438,9 @@
 }
 
 .tag-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
   color: var(--text-secondary);
   text-decoration: none;
   transition: color var(--transition-fast);

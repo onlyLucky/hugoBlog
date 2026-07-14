@@ -2,6 +2,11 @@ baseURL = "/"
 theme = "mana"
 defaultContentLanguage = "zh"
 
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
 [pagination]
   pageSize = 10
 
@@ -90,6 +95,11 @@ defaultContentLanguage = "zh"
     weight = 30
 
   [[languages.zh.menus.main]]
+    name = "合集"
+    pageRef = "/series"
+    weight = 35
+
+  [[languages.zh.menus.main]]
     name = "关于"
     pageRef = "/about"
     weight = 40
@@ -124,6 +134,11 @@ defaultContentLanguage = "zh"
     name = "Tags"
     pageRef = "/tags"
     weight = 30
+
+  [[languages.en.menus.main]]
+    name = "Series"
+    pageRef = "/series"
+    weight = 35
 
   [[languages.en.menus.main]]
     name = "About"

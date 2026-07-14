@@ -108,21 +108,6 @@
   padding-left: var(--spacing-lg);
 }
 
-/* Code, tables, figures inside list items: reset list padding */
-.about-content-full li pre,
-.about-content-full li code,
-.about-content-full li table,
-.about-content-full li figure,
-.about-content-full li img,
-.about-content-full dd pre,
-.about-content-full dd code,
-.about-content-full dd table,
-.about-content-full dd figure,
-.about-content-full dd img {
-  margin-left: -1.5em;
-  padding-left: 0;
-}
-
 .about-content-full a {
   color: var(--accent-primary);
   text-decoration: underline;

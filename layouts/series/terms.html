@@ -1,0 +1,62 @@
+{{ define "main" }}
+  <div class="list-container">
+    <header class="list-header">
+      <h1 class="list-title">
+        <span class="list-title-line2">合集</span>
+        <span class="list-title-count">{{ len .Data.Terms }} 个</span>
+      </h1>
+    </header>
+
+    <!-- 名称筛选 -->
+    <div class="filter-input-wrap" style="margin-bottom:var(--spacing-xl);">
+      <svg class="filter-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+      </svg>
+      <input
+        type="text"
+        id="series-filter"
+        class="filter-input"
+        style="padding:0.75rem 1.5rem 0.75rem 2.5rem;"
+        placeholder="输入合集名称筛选…"
+        aria-label="筛选合集名称"
+        oninput="filterSeries(this.value)">
+    </div>
+
+    <!-- 合集列表 -->
+    <div class="posts-list" id="series-list">
+      {{ range .Data.Terms.Alphabetical }}
+        <article class="post-card series-item" data-name="{{ .Page.Title }}" onclick="window.location='{{ .Page.RelPermalink }}'" style="cursor:pointer;">
+          <div class="post-content">
+            <h3 class="post-title">
+              <a href="{{ .Page.RelPermalink }}" onclick="event.stopPropagation();">{{ .Page.Title }}</a>
+            </h3>
+            {{ if .Page.Description }}
+              <p class="post-description">{{ .Page.Description }}</p>
+            {{ end }}
+            <div class="post-meta-inline">
+              <span class="post-reading-time">
+                <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+                {{ .Count }} 篇
+              </span>
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+
+    {{ partial "back-to-home.html" . }}
+  </div>
+
+  <script>
+    function filterSeries(keyword) {
+      const items = document.querySelectorAll('.series-item');
+      const kw = keyword.toLowerCase();
+      items.forEach(item => {
+        const name = item.dataset.name.toLowerCase();
+        item.style.display = name.includes(kw) ? '' : 'none';
+      });
+    }
+  </script>
+{{ end }}
