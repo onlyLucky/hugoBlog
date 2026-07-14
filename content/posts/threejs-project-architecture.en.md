@@ -5,7 +5,6 @@ description: "从零搭建 Vite + TypeScript + Three.js 项目，理解 Scene / 
 date: 2026-07-07T10:00:00+08:00
 categories: ["前端", "3D"]
 series: ["Three.js 造物日记"]
-weight: 1
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d"]
 draft: false

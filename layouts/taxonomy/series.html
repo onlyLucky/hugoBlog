@@ -5,13 +5,13 @@
         <span class="list-title-line2">{{ .Title }}</span>
         <span class="list-title-count">{{ len .Pages }} 篇</span>
       </h1>
-      {{ if .Description }}
-        <p class="list-description">{{ .Description }}</p>
+      {{ with .Page.Description }}
+        <p class="list-description">{{ . }}</p>
       {{ end }}
     </header>
 
     <div class="posts-list">
-      {{ range .Pages.ByWeight }}
+      {{ range .Pages.ByDate.Reverse }}
         {{ partial "post-card.html" (dict "page" . "limit" 3) }}
       {{ end }}
     </div>

@@ -1,4 +1,5 @@
 {{ define "main" }}
+  {{ $descriptions := index .Site.Data "series_descriptions" }}
   <div class="list-container">
     <header class="list-header">
       <h1 class="list-title">
@@ -30,15 +31,15 @@
             <h3 class="post-title">
               <a href="{{ .Page.RelPermalink }}" onclick="event.stopPropagation();">{{ .Page.Title }}</a>
             </h3>
-            {{ if .Page.Description }}
-              <p class="post-description">{{ .Page.Description }}</p>
+            {{ with index $descriptions .Page.Title }}
+              <p class="post-description">{{ . }}</p>
             {{ end }}
             <div class="post-meta-inline">
               <span class="post-reading-time">
                 <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                 </svg>
-                {{ .Count }} 篇
+                {{ len .Pages }} 篇
               </span>
             </div>
           </div>

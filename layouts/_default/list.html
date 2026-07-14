@@ -1,0 +1,123 @@
+{{ define "main" }}
+  {{ $allPosts := where site.RegularPages "Type" "posts" }}
+  {{ $allTags := slice }}
+  {{ range $allPosts }}
+    {{ if .Params.tags }}
+      {{ range .Params.tags }}
+        {{ $allTags = $allTags | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $uniqueTags := $allTags | uniq | sort }}
+  {{ $yearMonths := slice }}
+  {{ range $allPosts }}
+    {{ $yearMonth := .Date.Format "2006-01" }}
+    {{ $yearMonths = $yearMonths | append $yearMonth }}
+  {{ end }}
+  {{ $uniqueYearMonths := $yearMonths | uniq | sort }}
+
+
+  <div class="list-container">
+    <header class="list-header">
+      <h1 class="list-title">
+        <span class="list-title-line2">{{ i18n "posts" | upper }}</span>
+        <span class="list-title-count"><span id="filtered-count">{{ len $allPosts }}</span> {{ i18n "postsUnit" }}</span>
+      </h1>
+      {{ if .Description }}
+        <p class="list-description">{{ .Description }}</p>
+      {{ end }}
+    </header>
+
+    <!-- Filter Controls -->
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-toggle" id="filter-toggle" type="button" aria-expanded="false" aria-controls="filter-fields">
+        <span class="filter-toggle-label">{{ i18n "filters" }}</span>
+        <svg class="filter-toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+
+      <div class="filter-fields collapsed" id="filter-fields">
+        <!-- Title Search -->
+        <div class="filter-field">
+          <label class="filter-label" for="filter-title">{{ i18n "searchTitle" }}</label>
+          <div class="filter-input-wrap">
+            <svg class="filter-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input
+              type="text"
+              id="filter-title"
+              class="filter-input"
+              placeholder="{{ i18n "searchTitlePlaceholder" }}"
+              aria-label="{{ i18n "searchTitle" }}">
+          </div>
+        </div>
+
+        <!-- Tags Multi-Select -->
+        <div class="filter-field">
+          <label class="filter-label">{{ i18n "tagsLabel" }}</label>
+          <div class="filter-dropdown" id="tag-dropdown">
+            <button class="filter-dropdown-toggle" id="tag-dropdown-toggle" type="button" aria-expanded="false">
+              <span class="filter-dropdown-text" id="tag-dropdown-text">{{ i18n "allTags" }}</span>
+              <svg class="filter-dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="filter-dropdown-menu" id="tag-dropdown-menu">
+              {{ range $uniqueTags }}
+                <label class="filter-dropdown-item">
+                  <input type="checkbox" value="{{ . }}" class="filter-dropdown-check" checked>
+                  <span class="filter-dropdown-label">{{ . }}</span>
+                </label>
+              {{ end }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Select -->
+        <div class="filter-field">
+          <label class="filter-label" for="filter-year-month">{{ i18n "yearMonth" }}</label>
+          <div class="filter-input-wrap">
+            <select id="filter-year-month" class="filter-input filter-select" aria-label="{{ i18n "yearMonth" }}">
+              <option value="">{{ i18n "allDates" }}</option>
+              {{ range $uniqueYearMonths }}
+                {{ $t := (printf "%s-01" .) | time.AsTime }}
+                <option value="{{ . }}">{{ $t | time.Format ":date_long" }}</option>
+              {{ end }}
+            </select>
+          </div>
+        </div>
+
+        <!-- Clear Button -->
+        <button id="clear-filters" class="filter-clear-btn" aria-label="{{ i18n "clearFilters" }}">
+          {{ i18n "clearFilters" }}
+        </button>
+      </div>
+    </div>
+
+    <div class="posts-list" id="posts-container">
+      {{ $sorted := .Pages.ByDate.Reverse }}
+      {{ $paginator := .Paginate $sorted }}
+      {{ range $paginator.Pages }}
+        {{ $dataTags := "" }}
+        {{ if .Params.tags }}
+          {{ $dataTags = delimit .Params.tags "," }}
+        {{ end }}
+        {{ partial "post-card.html" (dict
+          "page" .
+          "limit" 3
+          "dataYearMonth" (.Date.Format "2006-01")
+          "dataTags" $dataTags
+          "dataTitle" .Title)
+        }}
+      {{ end }}
+    </div>
+
+    <!-- Pagination -->
+    {{ partial "pagination.html" . }}
+
+    <!-- Navigation links -->
+    {{ partial "back-to-home.html" . }}
+  </div>
+{{ end }}
