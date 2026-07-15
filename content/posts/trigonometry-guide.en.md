@@ -3,7 +3,7 @@ title: "数学基础：三角函数完全指南"
 meta_title: "三角函数完全指南 - 从定义到应用"
 description: "系统梳理三角函数的基本定义、公式、图像与反三角函数，附常用角度值表和速查卡片。Three.js 3D 开发的数学基础。"
 date: 2026-07-05T10:00:00+08:00
-image: "/images/blog/trigonometry/all_functions_graph.png"
+image: "/images/2026-07-05_trigonometry/all_functions_graph.png"
 categories: ["数学", "3D基础"]
 author: "Feynman"
 tags: ["数学", "三角函数", "3d基础", "threejs"]
@@ -102,11 +102,11 @@ draft: false
 
 ### 三函数对比图
 
-![三角函数图像对比](/images/blog/trigonometry/all_functions_graph.png)
+![三角函数图像对比](/images/2026-07-05_trigonometry/all_functions_graph.png)
 
 ### 正弦函数 $y = \sin x$
 
-![正弦函数图像](/images/blog/trigonometry/sin_graph.png)
+![正弦函数图像](/images/2026-07-05_trigonometry/sin_graph.png)
 
 - 周期：$2\pi$
 - 值域：$[-1, 1]$
@@ -114,7 +114,7 @@ draft: false
 
 ### 余弦函数 $y = \cos x$
 
-![余弦函数图像](/images/blog/trigonometry/cos_graph.png)
+![余弦函数图像](/images/2026-07-05_trigonometry/cos_graph.png)
 
 - 周期：$2\pi$
 - 值域：$[-1, 1]$
@@ -122,7 +122,7 @@ draft: false
 
 ### 正切函数 $y = \tan x$
 
-![正切函数图像](/images/blog/trigonometry/tan_graph.png)
+![正切函数图像](/images/2026-07-05_trigonometry/tan_graph.png)
 
 - 周期：$\pi$
 - 值域：$(-\infty, +\infty)$
@@ -182,7 +182,7 @@ draft: false
 
 #### 反正弦函数 $y = \arcsin(x)$
 
-![反正弦函数图像](/images/blog/trigonometry/arcsin_graph.png)
+![反正弦函数图像](/images/2026-07-05_trigonometry/arcsin_graph.png)
 
 - 定义域：$[-1, 1]$
 - 值域：$[-\frac{\pi}{2}, \frac{\pi}{2}]$
@@ -191,7 +191,7 @@ draft: false
 
 #### 反余弦函数 $y = \arccos(x)$
 
-![反余弦函数图像](/images/blog/trigonometry/arccos_graph.png)
+![反余弦函数图像](/images/2026-07-05_trigonometry/arccos_graph.png)
 
 - 定义域：$[-1, 1]$
 - 值域：$[0, \pi]$
@@ -200,7 +200,7 @@ draft: false
 
 #### 反正切函数 $y = \arctan(x)$
 
-![反正切函数图像](/images/blog/trigonometry/arctan_graph.png)
+![反正切函数图像](/images/2026-07-05_trigonometry/arctan_graph.png)
 
 - 定义域：$(-\infty, +\infty)$
 - 值域：$(-\frac{\pi}{2}, \frac{\pi}{2})$

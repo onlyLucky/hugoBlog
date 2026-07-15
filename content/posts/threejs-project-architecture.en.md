@@ -12,7 +12,7 @@ draft: false
 
 > Everything in Three.js starts with three objects: Scene (stage), Camera (lens), Renderer (projector). Master this trio and you have your ticket to the 3D world.
 
-![Running effect: rotating floating normal material cube](/images/posts/project-architecture-demo.png)
+![Running effect: rotating floating normal material cube](/images/2026-07-07_series_threejs-creation-diary/01_project-architecture/demo.png)
 
 *Normal material cube rotating and floating on a black background, different faces showing different colors (normal direction mapped to RGB)*
 

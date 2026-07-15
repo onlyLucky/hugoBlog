@@ -12,7 +12,7 @@ draft: false
 
 > 几何体是 3D 世界的积木。掌握 5 种基础图元，就能组合出几乎任何形状。
 
-![运行效果：5 种基础几何体 + Wireframe 可视化](/images/posts/primitives-demo.png)
+![运行效果：5 种基础几何体 + Wireframe 可视化](/images/2026-07-07_series_threejs-creation-diary/02_primitives/demo.png)
 
 *从左到右：Wireframe 球体（低分段）、Box、Sphere、Cylinder、Torus，底部为棋盘格纹理的 Plane 地面*
 

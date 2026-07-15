@@ -13,7 +13,7 @@ draft: false
 
 > Three.js 的一切始于三个对象：Scene（舞台）、Camera（镜头）、Renderer（投影仪）。掌握这三件套，就掌握了 3D 世界的入场券。
 
-![运行效果：旋转浮动的法线材质立方体](/images/posts/project-architecture-demo.png)
+![运行效果：旋转浮动的法线材质立方体](/images/2026-07-07_series_threejs-creation-diary/01_project-architecture/demo.png)
 
 *法线材质立方体在黑色背景上旋转浮动，不同面呈现不同颜色（法线方向映射为 RGB）*
 
