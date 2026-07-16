@@ -35,6 +35,7 @@ readMore = "阅读全文"
 publishedOn = "发布于"
 updatedOn = "更新于"
 minuteRead = "分钟阅读"
+readingTime = "分钟"
 tableOfContents = "目录"
 
 # Archive
