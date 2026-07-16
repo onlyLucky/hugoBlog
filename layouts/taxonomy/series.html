@@ -3,7 +3,7 @@
     <header class="list-header">
       <h1 class="list-title">
         <span class="list-title-line2">{{ .Title }}</span>
-        <span class="list-title-count">{{ len .Pages }} 篇</span>
+        <span class="list-title-count">{{ len .Pages }} {{ i18n "postsUnit" }}</span>
       </h1>
       {{ with .Page.Description }}
         <p class="list-description">{{ . }}</p>
@@ -16,13 +16,12 @@
       {{ end }}
     </div>
 
-    <!-- 返回合集列表 -->
     <div class="tag-nav-links">
       <a href="{{ "/series" | relLangURL }}" class="tag-nav-link">
         <svg xmlns="http://www.w3.org/2000/svg" class="back-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        所有合集
+        {{ i18n "allSeries" }}
       </a>
     </div>
   </div>

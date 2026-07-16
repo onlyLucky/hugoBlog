@@ -6,7 +6,7 @@ date: 2026-07-16T10:00:00+08:00
 categories: ["前端", "3D"]
 series: ["Three.js 造物日记"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "材质", "pbr"]
+tags: ["threejs", "typescript", "webgl", "3d", "materials", "pbr"]
 draft: false
 ---
 
