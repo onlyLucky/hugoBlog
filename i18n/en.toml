@@ -95,7 +95,7 @@ buyMeACoffeeDescription = "Support me on Buy me a coffee!"
 
 # Series
 series = "Series"
-seriesCount = ""
+seriesCount = " "
 seriesUnit = "posts"
 seriesFilterPlaceholder = "Filter by series name…"
 seriesFilterAriaLabel = "Filter series name"
