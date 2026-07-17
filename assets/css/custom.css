@@ -39,3 +39,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* 代码块：限制最大高度，超出显示滚动条 */
+.post-content-main .highlight,
+.post-content-main pre.highlight {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.post-content-main pre {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* 确保代码块水平方向也可滚动（长行不溢出） */
+.post-content-main pre code {
+  display: block;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
