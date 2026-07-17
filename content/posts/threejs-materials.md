@@ -219,20 +219,20 @@ textureLoader.load(
 
 ## 09 复盘自测
 
-1. **MeshStandardMaterial 和 MeshPhysicalMaterial 的区别是什么？**
-   > MeshPhysicalMaterial 是 MeshStandardMaterial 的扩展，增加了清漆（clearcoat）、透射（transmission）、薄膜（thinFilm）等高级效果。适合玻璃、水面、汽车漆等需要特殊光学效果的材质。
+1. **Three.js 中哪些材质类型不受光照影响？为什么它们不需要灯光就能看到效果？**
+   > MeshBasicMaterial 不受光照影响。它直接输出颜色，不经过光照计算，所以有没有灯光都一样。
 
-2. **roughness=0 和 roughness=1 分别像什么材质？**
-   > roughness=0 是完美镜面反射（镜子、铬），roughness=1 是完全粗糙的漫反射（粉笔、布料）。roughness 控制表面微观粗糙程度，影响反射的清晰度。
+2. **roughness=0 和 roughness=1 分别像什么材质？请各举 2 个例子。**
+   > roughness=0 → 镜子、铬金属（完美镜面反射）。roughness=1 → 粉笔、布料（完全粗糙漫反射）。roughness 控制表面微观粗糙程度，影响反射的清晰度。
 
-3. **为什么 MeshStandardMaterial 不加灯光会全黑？**
-   > PBR 材质需要灯光才能计算光照。没有灯光时，所有光线强度为 0，所以物体全黑。可以加环境光（AmbientLight）或方向光（DirectionalLight）来照亮场景。
+3. **metalness 参数的含义是什么？为什么说 metalness 只有 0 和 1 有意义，中间值只在特殊情况下使用？**
+   > metalness 控制材质是金属还是非金属。现实中材质只有金属和非金属两种，不存在"半金属"。中间值可用于：物体表面有混合材质（如金属生锈）、特殊视觉风格（卡通/艺术化渲染）、磨损粗糙的金属效果。
 
-4. **法线贴图和位移贴图（Displacement Map）的区别？**
-   > 法线贴图只改变光照计算，不改变几何形状，是"视觉欺骗"；位移贴图会实际移动顶点位置，改变几何形状，但需要更多顶点。法线贴图性能更好，位移贴图效果更真实。
+4. **法线贴图的 RGB 通道分别代表什么方向？平坦表面的法线贴图颜色是什么？**
+   > R→X（左右倾斜），G→Y（前后倾斜），B→Z（朝上/朝外）。平坦表面法线朝 +Z，所以颜色是 RGB(128, 128, 255) 蓝紫色：R=128（中间值，X 无倾斜），G=128（中间值，Y 无倾斜），B=255（最大值，Z 完全朝上）。
 
-5. **TextureLoader 和 CanvasTexture 的使用场景区别？**
-   > TextureLoader 加载外部图片文件（jpg/png），适合真实纹理；CanvasTexture 用 Canvas 2D 程序生成，适合动态纹理、简单图案或运行时生成的纹理。
+5. **TextureLoader 和 CanvasTexture 分别适合什么场景？代码中哪些地方用了程序生成，哪些用了外部加载？**
+   > TextureLoader 加载外部图片文件（jpg/png），适合真实纹理（如金属锈蚀、木地板）。CanvasTexture 用 Canvas 2D 程序生成，适合动态纹理、简单图案（如棋盘格、凹凸砖块）。项目中：金属锈蚀纹理用 TextureLoader，棋盘格纹理用 CanvasTexture。
 
 ## 10 大白话解释
 

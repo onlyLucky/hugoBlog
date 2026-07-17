@@ -215,20 +215,20 @@ textureLoader.load(
 
 ## 09 Review Questions
 
-1. **What's the difference between MeshStandardMaterial and MeshPhysicalMaterial?**
-   > MeshPhysicalMaterial extends MeshStandardMaterial with advanced effects like clearcoat, transmission, and thin-film interference. It's suitable for materials requiring special optical effects like glass, water, and car paint.
+1. **Which Three.js material types are unaffected by lighting? Why can they be seen without lights?**
+   > MeshBasicMaterial is unaffected by lighting. It directly outputs color without going through lighting calculations, so it looks the same regardless of whether lights are present.
 
-2. **What materials do roughness=0 and roughness=1 resemble?**
-   > roughness=0 is perfect mirror reflection (mirror, chrome), roughness=1 is fully rough diffuse (chalk, fabric). Roughness controls surface micro-roughness, affecting reflection clarity.
+2. **What materials do roughness=0 and roughness=1 resemble? Give 2 examples each.**
+   > roughness=0 → mirror, chrome (perfect mirror reflection). roughness=1 → chalk, fabric (fully rough diffuse). Roughness controls surface micro-roughness, affecting reflection clarity.
 
-3. **Why is MeshStandardMaterial completely black without lights?**
-   > PBR materials need lights to calculate illumination. Without lights, all light intensity is 0, so objects appear black. Add ambient light (AmbientLight) or directional light (DirectionalLight) to illuminate the scene.
+3. **What does the metalness parameter mean? Why do only 0 and 1 make sense, with intermediate values only used in special cases?**
+   > Metalness controls whether a material is metallic or non-metallic. In reality, materials are either metallic or non-metallic—there's no such thing as "semi-metal". Intermediate values are useful for: mixed materials on a surface (like rusty metal), special visual styles (cartoon/artistic rendering), and worn/rough metallic effects.
 
-4. **What's the difference between normal maps and displacement maps?**
-   > Normal maps only change lighting calculations without altering geometry shape—it's "visual deception". Displacement maps actually move vertex positions, changing geometry shape, but require more vertices. Normal maps perform better, displacement maps look more realistic.
+4. **What directions do the RGB channels of a normal map represent? What color is a flat surface's normal map?**
+   > R→X (left-right tilt), G→Y (front-back tilt), B→Z (upward/outward). A flat surface's normal points in +Z, so the color is RGB(128, 128, 255) blue-purple: R=128 (mid-value, no X tilt), G=128 (mid-value, no Y tilt), B=255 (max, fully upward Z).
 
-5. **When to use TextureLoader vs CanvasTexture?**
-   > TextureLoader loads external image files (jpg/png), suitable for real textures. CanvasTexture uses Canvas 2D procedural generation, suitable for dynamic textures, simple patterns, or runtime-generated textures.
+5. **When to use TextureLoader vs CanvasTexture? Which parts of the code use procedural generation and which use external loading?**
+   > TextureLoader loads external image files (jpg/png), suitable for real textures (like metal rust, wood floors). CanvasTexture uses Canvas 2D procedural generation, suitable for dynamic textures and simple patterns (like checkerboard, brick bumps). In the project: metal rust texture uses TextureLoader, checkerboard texture uses CanvasTexture.
 
 ## 10 Plain Language Explanation
 
