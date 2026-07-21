@@ -4,7 +4,7 @@ meta_title: "GAMES101 Overview and Rasterization Introduction"
 description: "Computer graphics definition, applications, rendering pipeline, graphics vs computer vision"
 date: 2026-07-20T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
-series: ["GAMES101 - Modern Computer Graphics"]
+series: ["GAMES101 - 现代计算机图形学"]
 author: "Feynman"
 tags: ["games101", "graphics", "rasterization", "rendering-pipeline"]
 draft: false
@@ -38,26 +38,26 @@ The core task of computer graphics is to **represent, process, render, and displ
 
 GAMES101 covers four core topics in modern computer graphics:
 
-### 2.1 Rasterization
+### Rasterization
 
 - Project geometric primitives (3D triangles) **onto the screen**
 - Convert projected primitives **into pixel fragments**
 - **Gold standard for real-time applications** (video games)
 
-### 2.2 Curves and Meshes
+### Curves and Meshes
 
 - How to **represent geometric shapes** in computers
 - Bézier Curves
 - Catmull-Clark Subdivision Surfaces
 
-### 2.3 Ray Tracing
+### Ray Tracing
 
 - Shoot rays from camera through each pixel
 - Compute intersections and shading
 - Continue bouncing rays until hitting light sources
 - **Gold standard for offline applications** (movies, animation)
 
-### 2.4 Animation / Simulation
+### Animation / Simulation
 
 - Keyframe Animation
 - Mass-Spring Systems

@@ -38,26 +38,26 @@ draft: false
 
 GAMES101 课程覆盖现代计算机图形学的四大核心主题：
 
-### 2.1 光栅化 (Rasterization)
+### 光栅化 (Rasterization)
 
 - 将几何图元（3D 三角形/多边形）**投影到屏幕**上
 - 将投影后的图元**拆分为像素片段 (fragments)**
 - **实时应用的金标准**（电子游戏等）
 
-### 2.2 曲线与网格 (Curves and Meshes)
+### 曲线与网格 (Curves and Meshes)
 
 - 如何在计算机中**表示几何形状**
 - 贝塞尔曲线 (Bézier Curves)
 - Catmull-Clark 曲面细分
 
-### 2.3 光线追踪 (Ray Tracing)
+### 光线追踪 (Ray Tracing)
 
 - 从相机发射光线穿过每个像素
 - 计算交点和着色
 - 继续反射光线直到击中光源
 - **离线应用的金标准**（电影、动画）
 
-### 2.4 动画与模拟 (Animation / Simulation)
+### 动画与模拟 (Animation / Simulation)
 
 - 关键帧动画 (Keyframe Animation)
 - 质点弹簧系统 (Mass-Spring System)
