@@ -4,18 +4,33 @@ const THEME_STORAGE_KEY = "theme";
 const THEME_LIGHT = "light";
 const THEME_DARK = "dark";
 
+/** Time-based theme settings */
+const LIGHT_START_HOUR = 7;  /** 7:00 AM */
+const LIGHT_END_HOUR = 19;   /** 7:00 PM */
+
 /**
- * Get initial theme from localStorage or system preference
+ * Get theme based on current time
+ * @returns {string} Theme name
+ */
+function getTimeBasedTheme() {
+  const hour = new Date().getHours();
+  return (hour >= LIGHT_START_HOUR && hour < LIGHT_END_HOUR) ? THEME_LIGHT : THEME_DARK;
+}
+
+/**
+ * Get initial theme from localStorage, time-based logic, or system preference
+ * Priority: localStorage > time-based > system preference
  * @returns {string} Theme name
  */
 function getInitialTheme() {
+  /** Check if user has manually set a theme */
   const storedTheme = localStorage.getItem(THEME_STORAGE_KEY);
   if (storedTheme) {
     return storedTheme;
   }
 
-  const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-  return prefersLight ? THEME_LIGHT : THEME_DARK;
+  /** Use time-based theme */
+  return getTimeBasedTheme();
 }
 
 /**
@@ -72,13 +87,6 @@ function initThemeToggle() {
   // Set initial theme
   const initialTheme = getInitialTheme();
   setTheme(initialTheme);
-
-  // Listen for system theme changes
-  window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
-    if (!localStorage.getItem(THEME_STORAGE_KEY)) {
-      setTheme(e.matches ? THEME_LIGHT : THEME_DARK);
-    }
-  });
 
   // Toggle theme on button click (all theme toggle buttons)
   themeToggles.forEach((themeToggle) => {

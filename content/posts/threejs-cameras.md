@@ -246,6 +246,30 @@ OrbitControls 就像给相机装了一个「旋转木马」：
 - 滚轮 = 拉近或推远相机
 - `enableDamping` = 给木马加惯性，松手后慢慢减速
 
+## 10 课后作业
+
+### 作业名称：GSAP 相机路径动画
+
+### 作业目标
+
+1. 学会用 GSAP 控制相机沿路径移动
+2. 实现一个"过山车"相机漫游效果
+3. 理解 timeline 和关键帧动画
+
+### 作业要求
+
+- 相机沿预设路径平滑移动（30 分）
+- 相机始终看向目标点（20 分）
+- 可以循环播放或手动触发（20 分）
+- 速度可调节（15 分）
+- 路径可视化（15 分）
+
+**参考代码**：`src/homework/05-cameras-gsap-path/main.ts`
+
+### 实现效果
+
+![课后作业预览：GSAP 相机路径动画](/images/2026-07-07_series_threejs-creation-diary/05_cameras/homework-preview.png)
+
 ---
 
 > 本文是 Three.js + GLSL + WebGPU 学习系列的第 5 篇笔记。课程评分：9.8/10。

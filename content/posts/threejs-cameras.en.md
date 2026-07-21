@@ -246,6 +246,30 @@ Like a "carousel" for your camera:
 - Scroll wheel = pull camera closer or push farther
 - `enableDamping` = add inertia, smooth deceleration after release
 
+## 10 Homework
+
+### Assignment: GSAP Camera Path Animation
+
+### Objectives
+
+1. Learn to control camera movement along a path using GSAP
+2. Implement a "roller coaster" camera tour effect
+3. Understand timeline and keyframe animation
+
+### Requirements
+
+- Camera moves smoothly along a preset path (30 pts)
+- Camera always looks at the target point (20 pts)
+- Loop playback or manual trigger (20 pts)
+- Adjustable speed (15 pts)
+- Path visualization (15 pts)
+
+**Reference Code**: `src/homework/05-cameras-gsap-path/main.ts`
+
+### Preview
+
+![Homework Preview: GSAP Camera Path Animation](/images/2026-07-07_series_threejs-creation-diary/05_cameras/homework-preview.png)
+
 ---
 
 > This is the 5th note in the Three.js + GLSL + WebGPU learning series. Course rating: 9.8/10.
