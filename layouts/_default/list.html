@@ -21,7 +21,7 @@
     <header class="list-header">
       <h1 class="list-title">
         <span class="list-title-line2">{{ i18n "posts" | upper }}</span>
-        <span class="list-title-count"><span id="filtered-count">{{ len $allPosts }}</span> {{ i18n "postsUnit" }}</span>
+        <span class="list-title-count"><span id="filtered-count">{{ .Paginator.TotalNumberOfElements }}</span> {{ i18n "postsUnit" }}</span>
       </h1>
       {{ if .Description }}
         <p class="list-description">{{ .Description }}</p>
@@ -97,9 +97,7 @@
     </div>
 
     <div class="posts-list" id="posts-container">
-      {{ $sorted := .Pages.ByDate.Reverse }}
-      {{ $paginator := .Paginate $sorted }}
-      {{ range $paginator.Pages }}
+      {{ range .Paginator.Pages.ByDate.Reverse }}
         {{ $dataTags := "" }}
         {{ if .Params.tags }}
           {{ $dataTags = delimit .Params.tags "," }}

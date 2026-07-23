@@ -39,7 +39,8 @@
       <h2 class="posts-title">{{ i18n "recentPosts" }}</h2>
 
       <div class="posts-list">
-        {{ range (where site.RegularPages "Type" "posts").ByDate.Reverse | first 10 }}
+        {{ $posts := where site.RegularPages "Type" "posts" }}
+        {{ range $posts.ByDate.Reverse | first 10 }}
           {{ partial "post-card.html" (dict "page" . "limit" 3) }}
         {{ end }}
       </div>

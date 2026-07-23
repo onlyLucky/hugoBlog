@@ -1,0 +1,175 @@
+{{ define "main" }}
+  <div class="single-post-wrapper">
+    <article class="single-post">
+      {{ partial "post-image-single.html" . }}
+
+      <header class="post-header">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="post-title-main">{{ .Title }}</h1>
+        {{ if .Description }}
+          <p class="post-description-main">{{ .Description }}</p>
+        {{ end }}
+        {{ partial "post-meta.html" . }}
+      </header>
+
+      <div class="post-content-main">
+        {{ .Content }}
+      </div>
+
+      {{ if .Params.tags }}
+        <footer class="post-footer">
+          <div class="post-tags-footer">
+            <span class="tags-label">{{ i18n "tags" }}:</span>
+            {{ range .Params.tags }}
+              <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="post-tag">{{ . }}</a>
+            {{ end }}
+          </div>
+        </footer>
+      {{ end }}
+
+      {{ partial "related-posts.html" . }}
+
+      {{/* ---- 准备合集导航数据 ---- */}}
+      {{ $seriesData := slice }}
+      {{ if .Params.series }}
+        {{ range .Params.series }}
+          {{ $seriesName := . }}
+          {{ $seriesPages := where site.RegularPages "Params.series" "intersect" (slice $seriesName) }}
+          {{ $seriesPages = $seriesPages.ByDate }}
+          {{ $pagesInfo := slice }}
+          {{ range $seriesPages }}
+            {{ $pagesInfo = $pagesInfo | append (dict "url" .RelPermalink "title" .Title) }}
+          {{ end }}
+          {{ $seriesData = $seriesData | append (dict "name" $seriesName "pages" $pagesInfo) }}
+        {{ end }}
+      {{ end }}
+
+      {{/* ---- 准备 section 导航数据（按日期降序，与列表页一致） ---- */}}
+      {{ $sectionPrevUrl := "" }}
+      {{ $sectionPrevTitle := "" }}
+      {{ $sectionNextUrl := "" }}
+      {{ $sectionNextTitle := "" }}
+      {{ $allPages := where site.RegularPages "Section" "posts" }}
+      {{ $allPages = $allPages.ByDate.Reverse }}
+      {{ $currentPermalink := .RelPermalink }}
+      {{ $currentIndex := -1 }}
+      {{ $i := 0 }}
+      {{ range $allPages }}
+        {{ if eq .RelPermalink $currentPermalink }}
+          {{ $currentIndex = $i }}
+        {{ end }}
+        {{ $i = add $i 1 }}
+      {{ end }}
+      {{ if and (ge $currentIndex 0) (lt $currentIndex (sub (len $allPages) 1)) }}
+        {{ $prevPage := index $allPages (add $currentIndex 1) }}
+        {{ $sectionPrevUrl = $prevPage.RelPermalink }}
+        {{ $sectionPrevTitle = $prevPage.Title }}
+      {{ end }}
+      {{ if gt $currentIndex 0 }}
+        {{ $nextPage := index $allPages (sub $currentIndex 1) }}
+        {{ $sectionNextUrl = $nextPage.RelPermalink }}
+        {{ $sectionNextTitle = $nextPage.Title }}
+      {{ end }}
+
+      <nav class="post-navigation" aria-label="Post navigation"
+           id="post-nav"
+           data-current="{{ .RelPermalink }}"
+           data-series='{{ $seriesData | jsonify }}'
+           data-section-prev-url="{{ $sectionPrevUrl }}"
+           data-section-prev-title="{{ $sectionPrevTitle }}"
+           data-section-next-url="{{ $sectionNextUrl }}"
+           data-section-next-title="{{ $sectionNextTitle }}">
+      </nav>
+
+      <script>
+      (function() {
+        var nav = document.getElementById('post-nav');
+        if (!nav) return;
+
+        var current = nav.dataset.current;
+        var seriesData = JSON.parse(nav.dataset.series || '[]');
+        var context = sessionStorage.getItem('navContext') || 'ARTICLE';
+        var currentSeries = sessionStorage.getItem('navSeries') || '';
+        var navList = JSON.parse(sessionStorage.getItem('navList') || '[]');
+
+        // ---- DEBUG ----
+        console.group('[Nav Debug] ' + current);
+        console.log('context =', context);
+        console.log('navSeries =', currentSeries || '(none)');
+        console.log('navList =', navList);
+        console.log('seriesData =', seriesData);
+        // ---- END DEBUG ----
+
+        var prev = null, next = null;
+
+        if (context === 'SERIES' && seriesData.length > 0) {
+          // ---- 合集导航：从 seriesData 中取 ----
+          var series = null;
+          for (var i = 0; i < seriesData.length; i++) {
+            if (seriesData[i].name === currentSeries) { series = seriesData[i]; break; }
+          }
+          if (!series) series = seriesData[0];
+
+          // ---- DEBUG ----
+          console.log('matched series =', series ? series.name : '(none)');
+          // ---- END DEBUG ----
+
+          if (series) {
+            var pages = series.pages;
+            var idx = -1;
+            for (var i = 0; i < pages.length; i++) {
+              if (pages[i].url === current) { idx = i; break; }
+            }
+            // ---- DEBUG ----
+            console.log('idx in series =', idx, '  pages =', pages.length);
+            // ---- END DEBUG ----
+            if (idx > 0) prev = pages[idx - 1];
+            if (idx >= 0 && idx < pages.length - 1) {
+              next = pages[idx + 1];
+            } else if (pages.length > 0) {
+              next = pages[0];
+            }
+          }
+        } else if (navList.length > 0) {
+          // ---- 列表导航：从 navList（首页/文章列表/合集详情列表）中取 ----
+          var idx = -1;
+          for (var i = 0; i < navList.length; i++) {
+            if (navList[i].url === current) { idx = i; break; }
+          }
+
+          // ---- DEBUG ----
+          console.log('idx in navList =', idx, '  total =', navList.length);
+          // ---- END DEBUG ----
+
+          if (idx > 0) prev = navList[idx - 1];
+          if (idx >= 0 && idx < navList.length - 1) {
+            next = navList[idx + 1];
+          }
+        }
+
+        // ---- DEBUG ----
+        console.log('RESULT prev =', prev ? (prev.title || prev.url) : '(none)');
+        console.log('RESULT next =', next ? (next.title || next.url) : '(none)');
+        console.groupEnd();
+        // ---- END DEBUG ----
+
+        // 渲染
+        var html = '';
+        if (prev) {
+          html += '<a href="' + prev.url + '" class="nav-link nav-prev" aria-label="Previous: ' + prev.title + '">'
+                + '<span class="nav-label">{{ i18n "navPrev" }}</span>'
+                + '<span class="nav-title">' + prev.title + '</span></a>';
+        }
+        if (next) {
+          html += '<a href="' + next.url + '" class="nav-link nav-next" aria-label="Next: ' + next.title + '">'
+                + '<span class="nav-label">{{ i18n "navNext" }}</span>'
+                + '<span class="nav-title">' + next.title + '</span></a>';
+        }
+        nav.innerHTML = html;
+      })();
+      </script>
+    </article>
+
+    {{ partial "toc.html" . }}
+  </div>
+{{ end }}

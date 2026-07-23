@@ -3,26 +3,34 @@
     <header class="list-header">
       <h1 class="list-title">
         <span class="list-title-line2">{{ .Title }}</span>
-        <span class="list-title-count">{{ len .Pages }} {{ i18n "postsUnit" }}</span>
+        <span class="list-title-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}{{ i18n "postSingular" }}{{ else }}{{ i18n "postPlural" }}{{ end }}</span>
       </h1>
-      {{ with .Page.Description }}
-        <p class="list-description">{{ . }}</p>
+      {{ if .Description }}
+        <p class="list-description">{{ .Description }}</p>
       {{ end }}
     </header>
 
     <div class="posts-list">
-      {{ range .Pages.ByTitle }}
-        {{ partial "post-card.html" (dict "page" . "limit" 3) }}
+      {{ range $index, $page := .Pages.ByDate }}
+        {{ $dataTags := "" }}
+        {{ if $page.Params.tags }}
+          {{ $dataTags = delimit $page.Params.tags "," }}
+        {{ end }}
+        {{ partial "post-card.html" (dict
+          "page" $page
+          "limit" 3
+          "dataYearMonth" ($page.Date.Format "2006-01")
+          "dataTags" $dataTags
+          "dataTitle" $page.Title
+          "fromSeries" true)
+        }}
       {{ end }}
     </div>
 
+    <!-- Navigation links -->
     <div class="tag-nav-links">
-      <a href="{{ "/series" | relLangURL }}" class="tag-nav-link">
-        <svg xmlns="http://www.w3.org/2000/svg" class="back-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        {{ i18n "allSeries" }}
-      </a>
+      <a href="{{ "/series" | relLangURL }}" class="tag-nav-link">{{ i18n "allSeries" | default "All Series" }}</a>
+      <a href="{{ "/" | relLangURL }}" class="tag-nav-link">{{ i18n "backToHome" }}</a>
     </div>
   </div>
 {{ end }}
