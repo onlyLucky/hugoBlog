@@ -25,21 +25,18 @@
   }
 
   function initNavContext() {
-    // 1) 标题链接：阻止默认跳转，先设置 sessionStorage 再手动跳转
+    // 1) 链接：mousedown 时设置 sessionStorage，click 自然导航（兼容 View Transitions）
     document.querySelectorAll(".post-card[data-post-url] a").forEach(function (link) {
-      link.addEventListener("click", function (e) {
+      link.addEventListener("mousedown", function (e) {
         if (link.classList.contains("post-tag")) return;
-        e.preventDefault();
-        e.stopPropagation();
         var card = link.closest(".post-card");
         if (card) setNavContext(card);
-        window.location.href = link.getAttribute("href");
       });
     });
 
-    // 2) 卡片非链接区域：设置 sessionStorage 后跳转
+    // 2) 卡片非链接区域：mousedown 设置 sessionStorage 后手动跳转
     document.querySelectorAll(".post-card[data-post-url]").forEach(function (card) {
-      card.addEventListener("click", function (e) {
+      card.addEventListener("mousedown", function (e) {
         if (e.target.closest("a")) return;
         setNavContext(card);
         window.location.href = card.getAttribute("data-post-url");
