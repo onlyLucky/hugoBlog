@@ -1,0 +1,20 @@
+{{/*
+  Custom word count partial that handles both CJK and English correctly.
+  - For CJK (zh): uses Hugo's .WordCount (correct with hasCJKLanguage = true)
+  - For English: counts words from .Plain (rendered plain text, no HTML/markdown)
+*/}}
+{{ $wordCount := 0 }}
+{{ if eq .Lang "zh" }}
+  {{ $wordCount = .WordCount }}
+{{ else }}
+  {{/* For English: use .Plain which is the rendered content as plain text */}}
+  {{ $plain := .Plain }}
+  {{ $words := split $plain " " }}
+  {{ range $words }}
+    {{ $w := trim . " \t\n\r" }}
+    {{ if gt (len $w) 0 }}
+      {{ $wordCount = add $wordCount 1 }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ return $wordCount }}

@@ -1,6 +1,7 @@
 baseURL = "/"
 theme = "mana"
 defaultContentLanguage = "zh"
+hasCJKLanguage = true
 
 [taxonomies]
   category = "categories"
