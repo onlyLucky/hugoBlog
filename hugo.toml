@@ -29,6 +29,12 @@ hasCJKLanguage = true
       [markup.goldmark.parser.attribute]
         block = true
         title = true
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)'], ['$', '$']]
   [markup.highlight]
     codeFences = true
     guessSyntax = true
@@ -45,6 +51,7 @@ hasCJKLanguage = true
 [params]
   enableIntegrity = false
   relatedPostsCount = 3
+  math = true
   description = "记录学习、分享技术、探索计算机图形学与网站艺术特效"
   author = "Feynman"
   heroTitleLine1 = "FEYNMAN"
