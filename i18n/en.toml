@@ -63,7 +63,7 @@ searchNoResults = "No results found"
 searchNoTagsFound = "No tags found"
 
 # Pagination
-pageOf = "Page %s of %s"
+pageOf = "Page %d of %d"
 postSingular = "post"
 postPlural = "posts"
 pageSingular = "page"

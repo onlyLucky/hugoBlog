@@ -4,7 +4,7 @@ meta_title: "Three.js 灯光与阴影教程"
 description: "掌握 5 种灯光类型（Ambient / Hemisphere / Directional / Point / Spot），理解阴影三要素，学会调整阴影质量和性能的平衡。"
 date: 2026-07-17T10:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "lights", "shadows"]
 draft: false

@@ -4,7 +4,7 @@ meta_title: "Three.js 材质系统教程"
 description: "掌握 6 种材质类型（Basic / Lambert / Phong / Standard / Physical / Toon），理解 PBR 材质的 roughness 和 metalness，学会环境贴图和法线贴图的使用。"
 date: 2026-07-16T10:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "materials", "pbr"]
 draft: false

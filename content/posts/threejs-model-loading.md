@@ -4,7 +4,7 @@ meta_title: "Three.js 模型加载"
 description: "GLTF/GLB 格式详解，GLTFLoader 加载模型，Draco 压缩，LoadingManager 进度管理，模型自动缩放居中，LOD 策略，AnimationMixer 动画播放"
 date: 2026-07-28T12:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "gltf", "model-loading", "animation"]
 draft: false

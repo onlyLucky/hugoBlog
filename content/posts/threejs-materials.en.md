@@ -4,7 +4,7 @@ meta_title: "Three.js Material System Tutorial"
 description: "Master 6 material types (Basic / Lambert / Phong / Standard / Physical / Toon), understand PBR material roughness and metalness, learn environment mapping and normal mapping."
 date: 2026-07-16T10:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "materials", "pbr"]
 draft: false

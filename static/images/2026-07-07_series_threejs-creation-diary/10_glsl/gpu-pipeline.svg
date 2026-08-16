@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" width="100%" height="auto" role="img" aria-label="GPU 渲染流水线与阶段契约">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#52525B"/>
+    </marker>
+  </defs>
+
+  <!-- 流水线节点 -->
+  <!-- 顶点数据 -->
+  <g>
+    <rect x="40" y="56" width="108" height="84" rx="12" fill="#EFEFF2" stroke="rgba(23,23,23,0.12)"/>
+    <text x="94" y="92" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#171717">顶点数据</text>
+    <text x="94" y="114" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#52525B">attribute</text>
+  </g>
+  <!-- 顶点着色器 -->
+  <g>
+    <rect x="170" y="56" width="108" height="84" rx="12" fill="#F2F7FF" stroke="#4B3FE3"/>
+    <text x="224" y="92" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#1A1759">顶点着色器</text>
+    <text x="224" y="114" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#4B3FE3">可编程阶段</text>
+    <text x="224" y="132" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#4B3FE3">写 gl_Position</text>
+  </g>
+  <!-- 光栅化 -->
+  <g>
+    <rect x="300" y="56" width="108" height="84" rx="12" fill="#EFEFF2" stroke="rgba(23,23,23,0.12)"/>
+    <text x="354" y="92" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#171717">光栅化</text>
+    <text x="354" y="114" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#52525B">固定功能</text>
+    <text x="354" y="132" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#52525B">varying 插值</text>
+  </g>
+  <!-- 片元着色器 -->
+  <g>
+    <rect x="430" y="56" width="108" height="84" rx="12" fill="#F2F7FF" stroke="#4B3FE3"/>
+    <text x="484" y="92" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#1A1759">片元着色器</text>
+    <text x="484" y="114" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#4B3FE3">可编程阶段</text>
+    <text x="484" y="132" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#4B3FE3">写 gl_FragColor</text>
+  </g>
+  <!-- 帧缓冲 -->
+  <g>
+    <rect x="560" y="56" width="108" height="84" rx="12" fill="#EFEFF2" stroke="rgba(23,23,23,0.12)"/>
+    <text x="614" y="92" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#171717">帧缓冲</text>
+    <text x="614" y="114" text-anchor="middle" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#52525B">屏幕像素</text>
+  </g>
+
+  <!-- 连接线 -->
+  <line x1="148" y1="98" x2="168" y2="98" stroke="#52525B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <line x1="278" y1="98" x2="298" y2="98" stroke="#52525B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <line x1="408" y1="98" x2="428" y2="98" stroke="#52525B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+  <line x1="538" y1="98" x2="558" y2="98" stroke="#52525B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+
+  <!-- 箭头标签 -->
+  <text x="158" y="48" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="500" fill="#52525B">attribute</text>
+  <text x="288" y="48" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="500" fill="#52525B">gl_Position</text>
+  <text x="418" y="48" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="500" fill="#52525B">varying</text>
+  <text x="548" y="48" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="500" fill="#52525B">gl_FragColor</text>
+
+  <!-- 标题 -->
+  <text x="40" y="30" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#171717">GPU 渲染流水线：数据单向流动，可编程阶段只能写自己阶段的输出</text>
+
+  <!-- 限制面板1 -->
+  <g>
+    <rect x="40" y="178" width="312" height="56" rx="12" fill="rgba(232,70,58,0.12)" stroke="#E8463A"/>
+    <text x="56" y="200" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#E8463A">顶点着色器里写 gl_FragColor</text>
+    <text x="56" y="222" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#52525B">该变量只存在于片元阶段 → 编译报错</text>
+  </g>
+  <!-- 限制面板2 -->
+  <g>
+    <rect x="368" y="178" width="312" height="56" rx="12" fill="rgba(232,70,58,0.12)" stroke="#E8463A"/>
+    <text x="384" y="200" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#E8463A">片元着色器里写 gl_Position</text>
+    <text x="384" y="222" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="12" fill="#52525B">顶点已结束、光栅化已完成 → 无法回写</text>
+  </g>
+
+  <!-- 底部结论 -->
+  <rect x="40" y="254" width="640" height="40" rx="12" fill="#EFEFF2" stroke="rgba(23,23,23,0.12)"/>
+  <text x="56" y="278" font-family="'SF Pro Text','PingFang SC',system-ui,sans-serif" font-size="14" font-weight="500" fill="#171717">数据流单向不可逆：attribute → 顶点 → varying 插值 → 片元 → 帧缓冲，无反向通道</text>
+</svg>

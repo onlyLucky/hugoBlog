@@ -4,7 +4,7 @@ meta_title: "GAMES101 Overview and Rasterization Introduction"
 description: "Computer graphics definition, applications, rendering pipeline, graphics vs computer vision"
 date: 2026-07-20T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
-series: ["GAMES101 - 现代计算机图形学"]
+series: ["games101-modern-computer-graphics"]
 author: "Feynman"
 tags: ["games101", "graphics", "rasterization", "rendering-pipeline"]
 draft: false

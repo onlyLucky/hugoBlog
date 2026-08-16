@@ -4,7 +4,7 @@ meta_title: "GAMES101 Vectors and Linear Algebra Basics"
 description: "Vector definition and operations, dot product and cross product geometric meaning, matrix operations, homogeneous coordinates"
 date: 2026-07-21T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
-series: ["GAMES101 - 现代计算机图形学"]
+series: ["games101-modern-computer-graphics"]
 author: "Feynman"
 tags: ["games101", "graphics", "vectors", "linear-algebra", "matrices"]
 draft: false

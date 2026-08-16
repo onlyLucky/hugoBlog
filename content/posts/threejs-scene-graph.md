@@ -4,7 +4,7 @@ meta_title: "Three.js 场景图与变换"
 description: "场景图的树形结构，父子关系与变换继承，局部坐标系 vs 世界坐标系，Object3D 分组管理，scene.traverse() 遍历，AxesHelper/GridHelper 调试"
 date: 2026-07-24T12:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "scene-graph", "transform"]
 draft: false

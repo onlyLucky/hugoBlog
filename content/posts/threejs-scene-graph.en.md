@@ -4,7 +4,7 @@ meta_title: "Three.js Scene Graph and Transformations"
 description: "Scene graph tree structure, parent-child relationships and transform inheritance, local vs world coordinate systems, Object3D grouping, scene.traverse() traversal, AxesHelper/GridHelper debugging"
 date: 2026-07-24T12:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "scene-graph", "transform"]
 draft: false

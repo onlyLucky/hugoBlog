@@ -4,7 +4,7 @@ meta_title: "Three.js 几何体与图元教程"
 description: "掌握 5 种基础几何体（Box、Sphere、Cylinder、Torus、Plane），理解分段数与性能的关系，学会程序生成纹理和 Wireframe 可视化。"
 date: 2026-07-10T10:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "geometry", "primitives"]
 draft: false

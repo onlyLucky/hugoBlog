@@ -4,7 +4,7 @@ meta_title: "Three.js Lights and Shadows Tutorial"
 description: "Master 5 light types (Ambient / Hemisphere / Directional / Point / Spot), understand the three elements of shadows, and learn to balance shadow quality with performance."
 date: 2026-07-17T10:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "lights", "shadows"]
 draft: false

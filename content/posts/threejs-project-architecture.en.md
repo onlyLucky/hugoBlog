@@ -4,7 +4,7 @@ meta_title: "Three.js Project Architecture Tutorial"
 description: "Build a Vite + TypeScript + Three.js project from scratch, understand the Scene / Camera / Renderer trio, master requestAnimationFrame + delta time animation loop."
 date: 2026-07-07T10:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d"]
 draft: false

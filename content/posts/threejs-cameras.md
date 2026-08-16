@@ -4,7 +4,7 @@ meta_title: "Three.js 相机与控制教程"
 description: "区分透视相机和正交相机，掌握 OrbitControls 轨道控制器配置，理解相机参数（fov、aspect、near、far），学会相机切换和参数调整。"
 date: 2026-07-19T12:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "cameras", "controls"]
 draft: false

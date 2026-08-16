@@ -4,7 +4,7 @@ meta_title: "Three.js 动画系统"
 description: "requestAnimationFrame vs GSAP，gsap.to/from/timeline，KeyframeTrack 关键帧动画，AnimationObjectGroup 共享动画，AnimationMixer 模型动画"
 date: 2026-07-30T12:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "gsap", "animation", "keyframe"]
 draft: false

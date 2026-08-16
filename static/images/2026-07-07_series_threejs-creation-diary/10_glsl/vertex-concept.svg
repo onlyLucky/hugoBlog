@@ -1,0 +1,91 @@
+<svg viewBox="0 0 720 400" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root {
+      color-scheme: light;
+      --surface: #F7F7F8;
+      --surface-muted: #EFEFF2;
+      --text: #171717;
+      --text-muted: #52525B;
+      --border: rgba(23,23,23,0.12);
+      --brand: #4B3FE3;
+      --brand-soft: #F2F7FF;
+      --brand-soft-strong: #E5EAFF;
+      --brand-text: #1A1759;
+      --font-sans: "SF Pro Text","PingFang SC",system-ui,"Segoe UI",Roboto,sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --surface: #171717;
+        --surface-muted: #262626;
+        --text: #E5E5E5;
+        --text-muted: #A1A1AA;
+        --border: rgba(229,229,229,0.12);
+        --brand: #6054F1;
+        --brand-soft: #1A1759;
+        --brand-soft-strong: #3C2ECA;
+        --brand-text: #CFD8FF;
+      }
+    }
+    .t { fill: var(--text); font: 400 14px/20px var(--font-sans); }
+    .th { fill: var(--text); font: 500 14px/20px var(--font-sans); }
+    .ts { fill: var(--text-muted); font: 400 12px/18px var(--font-sans); }
+    .card { fill: var(--surface); stroke: var(--border); }
+    .node { fill: var(--surface-muted); stroke: var(--border); }
+    .node-focus { fill: var(--brand-soft); stroke: var(--brand); }
+    .node-focus .th { fill: var(--brand-text); }
+    .node-focus .ts { fill: var(--brand); }
+    .vertex { fill: var(--brand); stroke: var(--brand-soft-strong); }
+    .g-line { stroke: var(--text-muted); stroke-width: 1; fill: none; stroke-dasharray: 3 3; }
+    .arr { stroke: var(--text-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
+      <path d="M1 1 L7 4 L1 7 Z" fill="var(--text-muted)"/>
+    </marker>
+  </defs>
+
+  <text class="th" x="40" y="30" style="font-size:16px">顶点 Vertex</text>
+  <text class="ts" x="40" y="52">3D 几何体与渲染管线的最小组成单元</text>
+
+  <rect class="card" x="40" y="70" width="200" height="310" rx="12"/>
+  <text class="th" x="60" y="100">1 · 顶点是什么</text>
+  <path class="arr" d="M105 175 L178 185 L145 245 Z"/>
+  <circle class="vertex" cx="105" cy="175" r="6"/>
+  <circle class="vertex" cx="178" cy="185" r="6"/>
+  <circle class="vertex" cx="145" cy="245" r="6"/>
+  <text class="ts" x="140" y="275" text-anchor="middle">3 个顶点组成</text>
+  <text class="ts" x="140" y="292" text-anchor="middle">一个三角形图元</text>
+  <text class="ts" x="60" y="340">· 3D 空间中的一个点</text>
+  <text class="ts" x="60" y="358">· 几何体最小单元</text>
+
+  <rect class="card" x="260" y="70" width="200" height="310" rx="12"/>
+  <text class="th" x="280" y="100">2 · 顶点属性</text>
+  <circle class="vertex" cx="360" cy="165" r="9"/>
+  <text class="t" x="360" y="145" text-anchor="middle">顶点</text>
+  <line class="g-line" x1="360" y1="174" x2="360" y2="216"/>
+  <rect class="node" x="323" y="219" width="74" height="24" rx="8"/>
+  <text class="ts" x="360" y="234" text-anchor="middle">position</text>
+  <line class="g-line" x1="360" y1="243" x2="360" y2="252"/>
+  <rect class="node" x="323" y="255" width="74" height="24" rx="8"/>
+  <text class="ts" x="360" y="270" text-anchor="middle">normal</text>
+  <line class="g-line" x1="360" y1="279" x2="360" y2="288"/>
+  <rect class="node" x="323" y="291" width="74" height="24" rx="8"/>
+  <text class="ts" x="360" y="306" text-anchor="middle">uv</text>
+  <text class="ts" x="280" y="340">· attribute 类型</text>
+  <text class="ts" x="280" y="358">· 每个顶点各不相同</text>
+
+  <rect class="card" x="480" y="70" width="200" height="310" rx="12"/>
+  <text class="th" x="500" y="100">3 · 在管线中</text>
+  <rect class="node" x="500" y="130" width="160" height="34" rx="8"/>
+  <text class="t" x="580" y="151" text-anchor="middle">顶点数据</text>
+  <path class="arr" d="M580 164 L580 184" marker-end="url(#arrow)"/>
+  <rect class="node-focus" x="500" y="186" width="160" height="44" rx="8"/>
+  <text class="th" x="580" y="205" text-anchor="middle">顶点着色器</text>
+  <text class="ts" x="580" y="222" text-anchor="middle">每顶点执行一次</text>
+  <path class="arr" d="M580 230 L580 250" marker-end="url(#arrow)"/>
+  <rect class="node" x="500" y="252" width="160" height="34" rx="8"/>
+  <text class="t" x="580" y="273" text-anchor="middle">gl_Position</text>
+  <text class="ts" x="500" y="340">· 输出裁剪空间坐标</text>
+  <text class="ts" x="500" y="358">· 决定顶点最终位置</text>
+</svg>

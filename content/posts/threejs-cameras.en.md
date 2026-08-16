@@ -4,7 +4,7 @@ meta_title: "Three.js Cameras and Controls Tutorial"
 description: "Distinguish perspective and orthographic cameras, master OrbitControls configuration, understand camera parameters (fov, aspect, near, far), and learn camera switching and parameter adjustment."
 date: 2026-07-19T12:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "cameras", "controls"]
 draft: false

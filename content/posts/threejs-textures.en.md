@@ -4,7 +4,7 @@ meta_title: "Three.js Textures and Mapping Tutorial"
 description: "TextureLoader, UV coordinates and texture mapping, repeat/offset/wrap control, CubeTextureLoader skybox, environment map and reflection, RGBELoader HDRI"
 date: 2026-07-23T12:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "textures", "uv-mapping", "environment-map"]
 draft: false

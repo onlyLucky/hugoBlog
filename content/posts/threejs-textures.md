@@ -4,7 +4,7 @@ meta_title: "Three.js 纹理与贴图教程"
 description: "TextureLoader 加载图片纹理，UV 坐标与纹理映射，纹理 repeat/offset/wrap 控制，CubeTextureLoader 天空盒，环境贴图与反射，RGBELoader HDRI"
 date: 2026-07-23T12:00:00+08:00
 categories: ["前端", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "textures", "uv-mapping", "environment-map"]
 draft: false

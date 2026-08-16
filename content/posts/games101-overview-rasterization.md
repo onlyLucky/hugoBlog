@@ -4,7 +4,7 @@ meta_title: "GAMES101 概览与光栅化入门"
 description: "计算机图形学定义、应用领域、渲染管线、图形学与视觉的区别"
 date: 2026-07-20T12:00:00+08:00
 categories: ["图形学", "GAMES101"]
-series: ["GAMES101 - 现代计算机图形学"]
+series: ["games101-modern-computer-graphics"]
 author: "Feynman"
 tags: ["games101", "graphics", "rasterization", "rendering-pipeline"]
 draft: false

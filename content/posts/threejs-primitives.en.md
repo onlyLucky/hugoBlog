@@ -4,7 +4,7 @@ meta_title: "Three.js Geometry and Primitives Tutorial"
 description: "Master 5 basic geometries (Box, Sphere, Cylinder, Torus, Plane), understand the relationship between segments and performance, learn procedural texture generation and Wireframe visualization."
 date: 2026-07-10T10:00:00+08:00
 categories: ["Frontend", "3D"]
-series: ["Three.js 造物日记"]
+series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d", "geometry"]
 draft: false

@@ -4,7 +4,7 @@ meta_title: "GAMES101 向量与线性代数基础"
 description: "向量定义与运算、点积叉积的几何意义、矩阵运算、齐次坐标"
 date: 2026-07-21T12:00:00+08:00
 categories: ["图形学", "GAMES101"]
-series: ["GAMES101 - 现代计算机图形学"]
+series: ["games101-modern-computer-graphics"]
 author: "Feynman"
 tags: ["games101", "graphics", "vectors", "linear-algebra", "matrices"]
 draft: false
