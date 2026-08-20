@@ -462,17 +462,17 @@ $$
 
 ### MSAA (Multisample Anti-Aliasing)
 
-**Supersampling anti-aliasing**: computing coverage exactly is hard, so **sample multiple times within each pixel and average** to approximate a 1-pixel box filter.
+**Note the distinction**: "supersampling anti-aliasing" refers to **SSAA (Super Sampling Anti-Aliasing)**, which subdivides each pixel into $N \times N$ sub-pixels, each of which is **fully rendered independently (depth + shading)** and then averaged — shading cost scales by ~$N^2$. **MSAA (Multisample Anti-Aliasing)** is an efficient optimization of SSAA: the sub-sample points only perform **visibility (coverage) tests, not independent shading**; the whole pixel is **shaded once at its center**, then blended weighted by coverage. Since computing exact coverage is hard, multiple sample points are used to approximate a 1-pixel box filter.
 
-![4x4 supersampling](/images/2026-07-21_series_games101/04_rasterization/chap4_37.png)
+![4x4 multisampling](/images/2026-07-21_series_games101/04_rasterization/chap4_37.png)
 
-**Steps**:
+**Steps** (sub-samples only participate in coverage tests; shading is done once):
 
-1. Subdivide each pixel into $N \times N$ sub-samples.
-2. Test each sub-sample against the triangle (1 or 0).
-3. Average the $N \times N$ results as the pixel value.
+1. Subdivide each pixel into $N \times N$ sub-sample points.
+2. Test each sub-sample point against the triangle (1 or 0) to obtain coverage.
+3. Shade once at the pixel center (or centroid), then weight-blend the color by coverage to get the pixel value.
 
-![Supersampling step 1 sampling](/images/2026-07-21_series_games101/04_rasterization/chap4_38_1.png)
+![Multisampling step 1 sampling](/images/2026-07-21_series_games101/04_rasterization/chap4_38_1.png)
 ![Step 2 averaging](/images/2026-07-21_series_games101/04_rasterization/chap4_38_2.png)
 
 **Result**: edge pixels get intermediate values like 25% / 50% / 75% / 100%, showing smooth transitions.
@@ -481,7 +481,7 @@ $$
 
 **Pros**: effective, reliably eliminates jaggies.
 
-**Cons**: computational cost grows by $N^2$ (no free lunch — MSAA's price is more sampling overhead).
+**Cons**: more sample points add extra coverage tests and color/depth storage overhead (stored per sample point in hardware); but **shading runs only once, far cheaper than SSAA** (the ~$N^2$ cost increase is characteristic of SSAA).
 
 ### FXAA (Fast Approximate Anti-Aliasing)
 
@@ -575,7 +575,7 @@ Essence of the Nyquist sampling theorem: to prevent copies from overlapping, the
 
 | Technique | Principle | Pros | Cons | Use cases |
 |:---:|:---|:---|:---|:---|
-| **MSAA** | Subdivide each pixel into $N \times N$ sub-samples, test each against inside(triangle), average by coverage, approximating a 1-pixel box pre-filter | Effective, clear principle, smooth geometry edges | Cost grows with $N^2$; does not fix shader/texture aliasing | Geometry-edge anti-aliasing, default AA in traditional engines |
+| **MSAA** | Subdivide each pixel into $N \times N$ sub-samples, test each against inside(triangle), average by coverage, approximating a 1-pixel box pre-filter | Effective, clear principle, smooth geometry edges | Extra coverage tests and color/depth storage overhead per sample point, but shading runs only once — far cheaper than SSAA; does not fix shader/texture aliasing | Geometry-edge anti-aliasing, default AA in traditional engines |
 | **FXAA** | Post-processing: detect edges after rendering, smooth/blend nearby pixels | Fast, cheap, independent of scene complexity | May lose detail, can blur high-contrast edges, does not solve temporal aliasing | Mobile, performance-limited platforms, quick approximate AA |
 | **TAA** | Exploits frame-to-frame correlation: jittered sampling within each pixel per frame, accumulated over time, equivalent to "high sampling rate" | Low per-frame cost, better than MSAA, handles shader/transparent aliasing | Ghosting in dynamic scenes, relies on motion vectors, sensitive to fast motion | Mainstream in modern real-time engines (UE, Unity HDRP) |
 | **DLSS** | Deep-learning supersampling: render below output resolution, neural network reconstructs high-res using history frames + motion vectors + input frame | Significant performance gain, sharper than traditional TAA, sometimes exceeds native rendering | Depends on AI hardware (Tensor Core), may produce artifacts, quality varies across versions (1/2/3) | RTX GPUs, AI-accelerated real-time rendering |
