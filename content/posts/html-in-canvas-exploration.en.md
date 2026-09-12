@@ -8,14 +8,13 @@ series: ["frontend-misc-notes"]
 weight: 1
 author: "Feynman"
 tags: ["html-in-canvas", "canvas", "webgl", "threejs", "wicg"]
+image: "/images/2026-09-02_html-in-canvas/html-surface-ready.png"
 draft: false
 ---
 
 > HTML-in-Canvas is a Web standard proposal incubated at WICG by the Chrome team — turning `<canvas>` children from "invisible fallback content" into "layoutable, drawable, interactive offscreen HTML layers." This means DOM becomes a first-class citizen of the GPU rendering pipeline for the first time.
 
-![HTML-in-Canvas Light Demo: a pendant lamp illuminating an HTML surface](/images/2026-09-02_html-in-canvas/demo.png)
-
-*MORS² lamp experiment — a real HTML page as a Three.js texture, illuminated by a spotlight and swinging with Verlet physics*
+![HTML-in-Canvas lighting demo: adjusting the beam angle and cycling preset colors](/images/2026-09-02_html-in-canvas/beam-color-switch.gif)
 
 ## 01 Proposal Background
 
@@ -259,6 +258,8 @@ const nativeSupported = typeof HTMLCanvasElement.prototype.drawElementImage === 
   || typeof WebGLRenderingContext.prototype.texElementImage2D === 'function';
 ```
 
+> Note: The snippet above follows the official example and checks whether the methods are attached to the prototype — a `false` result means the browser lacks native API and will fall back to the polyfill path.
+
 **Three.js integration:**
 
 ```html
@@ -299,9 +300,9 @@ const nativeSupported = typeof HTMLCanvasElement.prototype.drawElementImage === 
 
 ---
 
-## 09 Homework: Suspended Spotlight 3D Scene
+## 09 Homework: Suspended Chandelier Illuminating an HTML Surface 3D Scene
 
-**Goal**: Build an interactive 3D "spotlight illuminating an HTML surface" scene, on par with the new `html-in-canvas-light` demo in AwardWebsites: HTML-in-Canvas rendering + Three.js 3D + Verlet pendulum physics + full mouse interaction.
+**Goal**: Build an interactive 3D "suspended chandelier illuminating an HTML surface" scene — a chandelier lit by both a spotlight (spot) and a point-light bulb (bulb) — on par with the new `html-in-canvas-light` demo in AwardWebsites: HTML-in-Canvas rendering + Three.js 3D + Verlet pendulum physics + full mouse interaction.
 
 ### Reference Implementation
 
@@ -314,34 +315,97 @@ A complete, runnable reference implementation already exists in this project at 
 | `config.ts` | Lighting params and concept copy config | — |
 | `compatibility.ts` | Three-path render compatibility + paint record race fallback | 07 Cross-Browser Strategy |
 
-**Technical architecture** (three `useEffect`s form a complete loop):
+### Homework Demo
 
-1. **Init**: add `layoutsubtree` to the canvas, dynamically import `three-html-render/polyfill`, install the polyfill, then install the texture-upload compatibility layer; the fast native path is used automatically when available.
-2. **Scene setup**: create the Three.js scene, use `HTMLTexture(pageSource)` to map a real HTML control panel onto a plane mesh; use `InteractionManager` to forward DOM events (buttons, sliders, swatches) to the in-canvas HTML surface.
-3. **State sync**: when lighting state (on/off, brightness, beam angle, color) changes, propagate it into the spotlight, point light, emissive materials, glow sprite, and lamp underside.
+Drag the lamp with the left button to swing it and operate the in-canvas HTML control panel; release to let it swing away on momentum (from the `html-in-canvas-light` demo in AwardWebsites):
 
-### Implementation Highlights
+![Dragging the lamp and interacting with the HTML surface](/images/2026-09-02_html-in-canvas/drag-swing-interaction.gif)
 
-```text
-gravity -9.81 · fixed physics step 1/120 · damping pulling ? 0.985 : 0.9948
+### Complete Implementation Flow
 
-Physics: constrained Verlet pendulum
-  position diff is velocity (position - previous)
-  dragging = applying an invisible spring force toward the pointer
-  constrain rope length back to ropeLength each step (anchor fixed at ceiling)
+The whole demo is divided into **three stages by three `useEffect`s — "init → scene → state sync"**, plus a fixed-step render loop. Every stage has matching code in `index.tsx`, making it a direct template for taking theory into practice:
 
-Interaction matrix:
-  LMB drag      swing the lamp + inertia release (momentum kept on release)
-  RMB drag      adjust beam angle horizontally (16°–58°)
-  RMB click     cycle through 5 preset light colors
-  double-click  reset light and swing
+**Stage 0｜Installing the polyfill** (`useEffect` ①)
+```tsx
+canvasRef.current.setAttribute('layoutsubtree', '')   // bind HTML-in-Canvas to the canvas
+await import('three-html-render/polyfill')            // dynamically install the polyfill
+installHtmlInCanvasPolyfill()                         // register the fallback render path
+installThreeHtmlTextureCompatibility()                // texture-upload compatibility layer
 ```
 
-**Inertia release key**: on release (`onPointerUp`), combine current momentum, pointer momentum, and a return impulse, scaled linearly by drag strength — the lamp naturally swings away.
+**Stage 1｜Scene setup** (`useEffect` ②)
+```tsx
+renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true,
+  powerPreference:'high-performance' })
+renderer.toneMapping = THREE.NeutralToneMapping
+renderer.toneMappingExposure = 1.08
 
-**Idle awareness**: the scene sleeps once stable (`stop requestAnimationFrame` when `stableFrames >= 80`) to avoid constant GPU use; any interaction or `paint` event calls `wake()`. This is the single most important performance lever.
+pageTexture = new THREE.HTMLTexture(pageSource)      // real DOM control panel → texture
+pageTexture.colorSpace = SRGB; minFilter = Linear     // generateMipmaps = false
+pageMesh = PlaneGeometry(1,1) → MeshStandardMaterial{
+  map: pageTexture, color:0xc5cad4, transparent:true, alphaTest:0.005 }
 
-**Compatibility fallback**: catches Chrome's "No cached paint record" (`InvalidStateError`), requests repaint, and marks the texture `needsUpdate` one beat later for automatic retry — capped at 60 retries so the race never breaks the render loop.
+// Lighting rig: the spotlight(spot) and point-light bulb(bulb) are two lighting
+// layers of the same chandelier; every control-panel param eventually syncs here
+rig = { spot, bulbLight, bulbMaterial, glowMaterial, undersideMaterial }
+interactions.add(pageMesh)     // InteractionManager: DOM events → in-canvas HTML surface
+```
+
+**Stage 2｜Constrained Verlet pendulum** (physics core, fixed step `1/120`)
+```ts
+// Fixed-step accumulator: render framerate jitter doesn't destabilize the physics
+accumulator += Math.min(delta, 0.05)
+while (accumulator >= 1/120) { stepPhysics(); accumulator -= 1/120 }
+
+velocity  = (position - previous) * (pulling ? 0.985 : 0.9948)  // damping
+position += velocity + gravity * (1/120)²                       // gravity -9.81
+// dragging = applying an invisible spring force toward the pointer's 3D aim, 52 * (1/120)²
+// each step constrain |position - anchor| back to ropeLength = 1.22
+```
+
+**Stage 3｜Mouse interaction**
+```text
+LMB drag   updatePointerTarget → intersect interaction plane to get aimTarget;
+           distance (pointer vs lamp in NDC) → pullStrength = smoothstep(dist, 0.08, 1.15)
+release    momentum = current + pointer momentum(transfer 0.055–0.12) + return impulse(0.32–1.6)
+           clampLength(4.25), offset previous by one step → lamp swings out naturally
+RMB drag   horizontal movement adjusts beam angle, clamp(16°, 58°)
+RMB click  counts as a click only if not dragged; cycles through 5 COLOR_PRESETS
+double-    resetMotion() resets the lamp and lighting
+click
+```
+
+**Stage 4｜Lighting sync** (`useEffect` ③)
+```ts
+rig.spot.color/angle/power         = color / rad(angle) / (enabled ? brightness : 0)
+rig.bulbLight.power                = enabled ? max(18, brightness*0.026) : 0
+rig.bulbMaterial.emissiveIntensity = enabled ? 2.4 + brightness/850   : 0.04
+rig.glowMaterial.opacity           = enabled ? 0.52 + brightness/4200 : 0
+rig.undersideMaterial.emissiveIntensity = enabled ? 0.22 + brightness/7250 : 0.03
+canvas.requestPaint?.(); wakeRef.current?.()   // trigger repaint and wake the render loop
+```
+
+**Stage 5｜Render loop + idle awareness**
+```ts
+animate(time) {
+  fixed-step accumulation → catch up at most 5 steps; updateRig(); interactions.update(); render(scene, camera)
+  if (pulling || stableFrames < 80 || frame < 4) requestAnimationFrame(animate)
+  // otherwise sleep: stop frames after 80 stable ones, avoiding persistent GPU use
+}
+wake() { stableFrames = 0; restart requestAnimationFrame if not already running }
+// paint events, any interaction, and resize all call wake()
+```
+
+**Stage 6｜Compatibility & HMR fallback**
+```ts
+onNativeUploadFailed(el => {                       // catch "No cached paint record"
+  setTimeout(() => { pageTexture.needsUpdate = true
+                     canvas.requestPaint?.(); wake() }, 0)  // delay one beat so version isn't clobbered
+})                                                  // retried at most 60 times
+void document.fonts.ready.then(() => {
+  canvas.requestPaint?.(); resize(); setReady(true)    // paint after fonts load to avoid flash
+})
+```
 
 ### Acceptance Checklist
 

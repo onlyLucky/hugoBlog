@@ -40,21 +40,67 @@
   text-overflow: ellipsis;
 }
 
-/* 代码块：限制最大高度，超出显示滚动条 */
+/* ===== 文章代码块：滚动与滚动条（custom 覆盖） =====
+   渲染结构（Hugo 默认高亮）：
+     <div class="highlight"><pre class="chroma"><code>…行内 span…</code></pre></div>
+   滚动分工（避免嵌套双层滚动条）：
+     纵向（高 + 限高）→ 最外层 div.highlight，限高 500px 产生纵向滚动；
+     横向（长行不换行）→ 内层 pre，沿用主题的 overflow-x:auto；
+     因此内层 pre 不再自设限高/纵向滚动，pre code 也不再加横向滚动容器。 */
+
+/* 外层 .highlight：纵向限高滚动（保留主题的横向属性，故只设纵向） */
 .post-content-main .highlight,
 .post-content-main pre.highlight {
   max-height: 500px;
   overflow-y: auto;
 }
 
+/* 内层 pre：纵向交给外层，横向保持主题行为 */
 .post-content-main pre {
-  max-height: 500px;
-  overflow-y: auto;
+  max-height: none;
+  overflow-y: visible;
 }
 
-/* 确保代码块水平方向也可滚动（长行不溢出） */
+/* 行内 code：保持块级不换行；横向滚动交给 pre，避免嵌套滚动层 */
 .post-content-main pre code {
   display: block;
-  overflow-x: auto;
+  overflow-x: visible;
   padding-bottom: 8px;
+}
+
+/* —— 滚动条：垂直条出现在 .highlight，水平条出现在 pre —— */
+.post-content-main pre::-webkit-scrollbar,
+.post-content-main .highlight::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.post-content-main pre::-webkit-scrollbar-track,
+.post-content-main .highlight::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.post-content-main pre::-webkit-scrollbar-thumb,
+.post-content-main .highlight::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--accent-primary, #7c3aed) 38%, transparent);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.post-content-main pre::-webkit-scrollbar-thumb:hover,
+.post-content-main .highlight::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--accent-primary, #7c3aed) 62%, transparent);
+}
+
+.post-content-main pre::-webkit-scrollbar-thumb:active,
+.post-content-main .highlight::-webkit-scrollbar-thumb:active {
+  background: color-mix(in srgb, var(--accent-primary, #7c3aed) 80%, transparent);
+}
+
+/* Firefox：细化滚动条 */
+.post-content-main pre,
+.post-content-main .highlight {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--accent-primary, #7c3aed) 45%, transparent) transparent;
 }
