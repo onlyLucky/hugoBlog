@@ -1,5 +1,35 @@
 /* Add your own custom styles here */
 
+/* ===== Cross-platform font stack =====
+   Space Grotesk / Inter / Outfit are Latin-only. Without explicit CJK
+   fallbacks, Chinese glyphs resolve to different system fonts on
+   Windows (Microsoft YaHei) vs macOS (PingFang SC). Keep Latin web
+   fonts first, then a shared CJK chain so both platforms pick the same
+   modern sans. */
+:root {
+  --font-heading:
+    "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+    sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", Arial, sans-serif;
+  --font-logo:
+    "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+    sans-serif;
+}
+
+/* Space Grotesk tops out at 700; 900 triggers faux-bold that renders
+   differently on Windows vs macOS — especially visible on outlined CJK. */
+.hero-title-line1,
+.hero-title-line2,
+.list-title-line2 {
+  font-weight: 700;
+  font-synthesis-weight: none;
+}
+
 /* Series badge in post meta */
 .post-series {
   display: flex;
