@@ -1,0 +1,267 @@
+{{ define "main" }}
+  <section class="hero-section">
+    <canvas id="shader-bg" class="shader-background"></canvas>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            <span class="hero-title-line2">404</span>
+            <span class="hero-title-line1">{{ i18n "404Title" }}</span>
+          </h1>
+          <p class="hero-subtitle">
+            &gt;
+            {{ if site.Params.custom404Message }}
+              {{ site.Params.custom404Message | safeHTML }}
+            {{ else }}
+              {{ i18n "404DefaultMessage" }}
+            {{ end }}
+          </p>
+          <div class="hero-social" style="margin-top: var(--spacing-lg);">
+            <a href="{{ .Site.Home.RelPermalink }}" class="post-tag" id="nf-home-link">
+              {{ i18n "404ReturnHome" }}
+            </a>
+            <span class="nf-enter-hint" id="nf-enter-hint" hidden>
+              {{ i18n "404EnterHint" | default "或按 Enter 直接跳转" }}
+            </span>
+          </div>
+        </div>
+
+        <aside class="hero-terminal" aria-hidden="true">
+          <div class="terminal-glass">
+            <div class="terminal-titlebar">
+              <span class="terminal-btn terminal-btn-close"></span>
+              <span class="terminal-btn terminal-btn-minimize"></span>
+              <span class="terminal-btn terminal-btn-maximize"></span>
+              <span class="terminal-title">Feynman — bash — 80×24</span>
+            </div>
+            <div class="terminal-body">
+              <pre class="terminal-code" id="nf-terminal"></pre>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* 与首页一致：去掉 main 默认 padding，让 hero 全屏贴顶 */
+    #main-content {
+      padding: 0 !important;
+    }
+
+    /* 与首页 hero-terminal 同源样式 */
+    .hero-terminal {
+      flex: 0 0 560px;
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
+      margin-top: var(--spacing-xl);
+    }
+
+    .terminal-glass {
+      background: var(--terminal-glass-bg);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border: 1px solid var(--terminal-glass-border);
+      border-radius: 12px;
+      box-shadow: var(--terminal-glass-shadow);
+      overflow: hidden;
+    }
+
+    .terminal-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--terminal-titlebar-bg);
+      border-bottom: 1px solid var(--terminal-glass-border);
+    }
+
+    .terminal-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      transition: opacity 0.2s ease;
+    }
+
+    .terminal-btn-close { background: #ff5f57; }
+    .terminal-btn-minimize { background: #febc2e; }
+    .terminal-btn-maximize { background: #28c840; }
+
+    .terminal-glass:hover .terminal-btn-close { box-shadow: 0 0 4px #ff5f57; }
+    .terminal-glass:hover .terminal-btn-minimize { box-shadow: 0 0 4px #febc2e; }
+    .terminal-glass:hover .terminal-btn-maximize { box-shadow: 0 0 4px #28c840; }
+
+    .terminal-title {
+      flex: 1;
+      text-align: left;
+      font-size: 0.8rem;
+      font-family: 'SF Mono', 'Menlo', monospace;
+      color: var(--terminal-text-dim);
+      opacity: 0.7;
+      user-select: none;
+    }
+
+    .terminal-body {
+      padding: 20px;
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal-code {
+      font-family: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--terminal-text);
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 240px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      overflow: hidden;
+    }
+
+    .token-keyword { color: var(--syn-keyword); font-weight: 500; }
+    .token-string { color: var(--syn-string); }
+    .token-comment { color: var(--syn-comment); font-style: italic; opacity: 0.75; }
+    .token-func { color: var(--syn-func); }
+    .token-prompt { color: var(--syn-prompt); font-weight: 600; }
+    .token-output { color: var(--terminal-text-dim); }
+
+    .token-cursor {
+      display: inline;
+      color: var(--syn-prompt);
+      animation: cursor-blink 1s step-end infinite;
+    }
+
+    @keyframes cursor-blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .token-error { color: #ff7b72; }
+    .token-warn { color: #e3b341; }
+    .token-ok { color: #3fb950; }
+    .token-link { color: var(--accent-secondary, #00ffff); font-weight: 600; }
+
+    .nf-enter-hint {
+      margin-left: 12px;
+      font-size: 0.85rem;
+      color: var(--terminal-text-dim, #9a9aaa);
+      opacity: 0.85;
+    }
+
+    .nf-enter-hint kbd {
+      display: inline-block;
+      padding: 1px 7px;
+      margin: 0 2px;
+      border-radius: 4px;
+      border: 1px solid var(--terminal-glass-border, rgba(176, 99, 224, 0.35));
+      background: var(--terminal-titlebar-bg, rgba(176, 99, 224, 0.12));
+      font-family: 'SF Mono', 'Menlo', monospace;
+      font-size: 0.78rem;
+      color: var(--accent-light-purple, #dbabff);
+    }
+
+    .nf-enter-hint.is-visible {
+      animation: nf-hint-in 0.4s ease both;
+    }
+
+    @keyframes nf-hint-in {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 0.85; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-terminal {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: var(--spacing-lg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .terminal-body { padding: 12px; min-height: 150px; }
+      .terminal-code { font-size: 0.75rem; line-height: 1.6; }
+      .terminal-title { font-size: 0.7rem; }
+    }
+  </style>
+
+  <script>
+  (function () {
+    var homeUrl = {{ .Site.Home.RelPermalink | jsonify | safeJS }};
+    var lines = [
+      { delay: 400, html: '<span class="token-prompt">$</span> <span class="token-func">curl</span> -I ' + location.pathname },
+      { delay: 320, html: '<span class="token-output">HTTP/2</span> <span class="token-error">404</span>' },
+      { delay: 220, html: '<span class="token-output">content-type: text/html; charset=utf-8</span>' },
+      { delay: 500, html: '<span class="token-prompt">$</span> <span class="token-func">ls</span> <span class="token-string">./posts</span>' },
+      { delay: 380, html: '<span class="token-ok">games101-*</span>  <span class="token-ok">threejs-*</span>  <span class="token-ok">web-motion</span>' },
+      { delay: 500, html: '<span class="token-prompt">$</span> <span class="token-func">echo</span> <span class="token-string">"page not found — path may have moved"</span>' },
+      { delay: 320, html: '<span class="token-warn">page not found — path may have moved</span>' },
+      { delay: 550, html: '<span class="token-prompt">$</span> <span class="token-func">cd</span> <span class="token-link">' + homeUrl + '</span>' },
+      { delay: 400, html: '<span class="token-comment"># ready</span>' },
+      { delay: 280, html: '<span class="token-prompt">$</span> <span class="token-string">open</span> <span class="token-link">首页</span>  <span class="token-output">↵ Enter</span>' }
+    ];
+
+    var el = document.getElementById('nf-terminal');
+    var hint = document.getElementById('nf-enter-hint');
+    var link = document.getElementById('nf-home-link');
+    if (!el || !link) return;
+
+    var CURSOR = '<span class="token-cursor">█</span>';
+    var i = 0;
+    var buffer = '';
+
+    function goHome() {
+      window.location.assign(homeUrl);
+    }
+
+    function showLine() {
+      if (i >= lines.length) {
+        buffer += (buffer ? '\n' : '') + '<span class="token-prompt">$</span> ' + CURSOR;
+        el.innerHTML = buffer;
+        if (hint) {
+          hint.hidden = false;
+          hint.classList.add('is-visible');
+        }
+        return;
+      }
+      var item = lines[i++];
+      setTimeout(function () {
+        buffer += (buffer ? '\n' : '') + item.html;
+        el.innerHTML = buffer + CURSOR;
+        showLine();
+      }, item.delay);
+    }
+
+    setTimeout(showLine, 500);
+
+    /* 提示尽早出现，Enter 立即可用 */
+    setTimeout(function () {
+      if (hint) {
+        hint.hidden = false;
+        hint.classList.add('is-visible');
+      }
+    }, 800);
+
+    /* Enter 任何时候都可跳转，不依赖动画是否结束 */
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.code !== 'Enter' && e.keyCode !== 13) return;
+      if (e.isComposing) return;
+      var target = e.target;
+      var tag = (target && target.tagName) ? target.tagName.toUpperCase() : '';
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'A' || (target && target.isContentEditable)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      goHome();
+    }, true);
+  })();
+  </script>
+{{ end }}

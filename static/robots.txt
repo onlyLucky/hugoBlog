@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /index.json
+
+Sitemap: https://blog.deltastudio.space/sitemap.xml

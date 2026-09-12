@@ -18,33 +18,52 @@
   // Language prefixes for URL normalization in page transitions
   window.MANA_LANG_PREFIXES = [{{ range $i, $lang := site.Languages }}{{ if $i }},{{ end }}'{{ $lang.Lang }}'{{ end }}];
 </script>
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-<meta
-  name="description"
-  content="{{ if .Description }}
-    {{ .Description }}
-  {{ else if .IsHome }}
-    {{ site.Params.description }}
-  {{ else }}
-    {{ .Summary | plainify | truncate 160 }}
-  {{ end }}
-"
->
+{{- $pageTitle := "" -}}
+{{- if .IsHome -}}
+  {{- $pageTitle = site.Title -}}
+{{- else -}}
+  {{- $seoTitle := .Params.meta_title | default .Title -}}
+  {{- $pageTitle = printf "%s | %s" $seoTitle site.Title -}}
+{{- end -}}
+{{- $pageDesc := "" -}}
+{{- if .Description -}}
+  {{- $pageDesc = .Description -}}
+{{- else if .IsHome -}}
+  {{- $pageDesc = site.Params.description -}}
+{{- else if .Params.description -}}
+  {{- $pageDesc = .Params.description -}}
+{{- else -}}
+  {{- $pageDesc = .Summary | plainify | truncate 160 -}}
+{{- end -}}
+{{- if not $pageDesc -}}
+  {{- if in (slice "section" "taxonomy" "term") .Kind -}}
+    {{- $pageDesc = printf "%s — %s" .Title (site.Params.description | default site.Title) -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $pageDesc -}}
+  {{- $pageDesc = site.Params.description | default site.Title -}}
+{{- end -}}
+<title>{{ $pageTitle }}</title>
+<meta name="description" content="{{ $pageDesc }}">
 <meta name="author" content="{{ site.Params.author }}">
-<meta name="robots" content="index, follow">
 
-<!-- Open Graph -->
-<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
-<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-<meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:site_name" content="{{ site.Title }}">
-<meta property="og:locale" content="{{ site.Language.LanguageCode }}">
+{{/* hreflang alternates */}}
+{{- range .Translations -}}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end -}}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- if .IsHome -}}
+{{- range where site.Home.AllTranslations "Language.Lang" "ne" site.Language.Lang -}}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{- end -}}
+<link rel="alternate" hreflang="x-default" href="{{ site.Home.Permalink }}">
+{{- end -}}
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
-<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ site.Params.description }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+<!-- Robots (supports front matter noindex/nofollow) -->
+{{ partial "head/robots.html" . }}
+
+<!-- Open Graph + Twitter Card (theme partial; og:image fallback) -->
+{{ partial "head/opengraph.html" . }}
 
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ .Permalink }}">

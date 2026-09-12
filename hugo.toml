@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://blog.deltastudio.space/"
 theme = "mana"
 defaultContentLanguage = "zh"
 hasCJKLanguage = true
@@ -42,7 +42,7 @@ hasCJKLanguage = true
     style = "catppuccin-macchiato"
 
 [outputs]
-  home = ["HTML", "JSON"]
+  home = ["HTML", "JSON", "RSS"]
 
 [sitemap]
   changefreq = "weekly"

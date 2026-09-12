@@ -83,6 +83,10 @@ allSeries = "所有合集"
 notFound = "页面不存在"
 notFoundMessage = "抱歉，您访问的页面不存在。"
 backToHome = "返回首页"
+404Title = "页面不存在"
+404DefaultMessage = "抱歉，您访问的页面不存在。"
+404ReturnHome = "返回首页"
+404EnterHint = "或按 Enter 直接跳转"
 
 # Footer
 copyright = "版权所有"

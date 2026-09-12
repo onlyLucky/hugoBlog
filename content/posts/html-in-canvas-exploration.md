@@ -1,18 +1,17 @@
-***
+---
 
 title: "HTML-in-Canvas 新特性探索"
-meta\_title: "HTML-in-Canvas API 完全指南"
+meta_title: "HTML-in-Canvas API 完全指南"
 description: "深入探索 Chrome 团队提出的 HTML-in-Canvas 提案——让 Canvas 原生绘制真实、可交互、可访问的 HTML 内容。从基础用法到 WebGL 3D 纹理，从踩坑清单到跨浏览器 polyfill 方案，一文打通 DOM 与像素世界。"
 date: 2026-09-02T10:00:00+08:00
-categories: \["前端", "Canvas"]
-series: \["frontend-misc-notes"]
+categories: ["前端", "Canvas"]
+series: ["frontend-misc-notes"]
 weight: 1
 author: "Feynman"
-tags: \["html-in-canvas", "canvas", "webgl", "threejs", "wicg"]
-image: "/images/2026-09-02\_html-in-canvas/html-surface-ready.png"
+tags: ["html-in-canvas", "canvas", "webgl", "threejs", "wicg"]
+image: "/images/2026-09-02_html-in-canvas/html-surface-ready.png"
 draft: false
-------------
-
+---
 > HTML-in-Canvas 是由 Chrome 团队发起、在 WICG 下孵化的 Web 标准提案——让 `<canvas>` 的子元素从"不可见的 fallback"变成"可布局、可绘制、可交互的离屏 HTML 图层"。这意味着 DOM 首次成为 GPU 渲染管线的一等公民。
 
 ![HTML-in-Canvas 灯光动态演示：光束角度调整与预设颜色切换](/images/2026-09-02_html-in-canvas/beam-color-switch.gif)
