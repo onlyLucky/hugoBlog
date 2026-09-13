@@ -1,0 +1,23 @@
+{{ define "main" }}
+  <div class="single-post-wrapper">
+    <article class="single-post policy-article">
+      <header class="post-header policy-header">
+        <h1 class="post-title-main policy-title">{{ .Title }}</h1>
+        {{ with .Params.updated }}
+          <p class="policy-updated">{{ i18n "policyUpdated" | default "Updated" }}：{{ . }}</p>
+        {{ end }}
+        {{ with .Description }}
+          <p class="post-description-main policy-lead">{{ . }}</p>
+        {{ end }}
+      </header>
+
+      <div class="post-content-main policy-content">
+        {{ .Content }}
+      </div>
+    </article>
+
+    {{ if .Params.toc }}
+      {{ partial "toc.html" . }}
+    {{ end }}
+  </div>
+{{ end }}

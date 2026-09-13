@@ -35,6 +35,7 @@ exploreTopics = "探索主题"
 about = "关于"
 contact = "联系"
 privacy = "隐私"
+policyUpdated = "更新日期"
 
 # Posts
 posts = "文章"

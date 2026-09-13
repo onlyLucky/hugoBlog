@@ -1,25 +1,29 @@
 <footer class="site-footer">
   <div class="footer-content">
-    <p class="footer-text">
-      &copy;
-      {{/* prettier-ignore-start */}}
-      {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }}
-      {{/* prettier-ignore-end */}}
-      {{ site.Params.copyright.owner | default site.Title }}.
-      {{ if site.Params.footerText }}
-        {{ site.Params.footerText }}
+    <div class="footer-brand">
+      <p class="footer-text">
+        <span class="footer-copyright">
+          &copy;
+          {{/* prettier-ignore-start */}}
+          {{ if site.Params.copyright.startYear }}{{ site.Params.copyright.startYear }}-{{ end }}{{ now.Year }}
+          {{/* prettier-ignore-end */}}
+          {{ site.Params.copyright.owner | default site.Title }}.
+        </span>
+        {{ if site.Params.footerText }}
+          <span class="footer-credit">{{ site.Params.footerText }}</span>
+        {{ end }}
+      </p>
+      {{ if site.Params.social }}
+        <div class="footer-social">
+          {{ partial "social-links.html" . }}
+        </div>
       {{ end }}
-    </p>
+    </div>
     <nav class="footer-trust" aria-label="Site">
       <a href="{{ "/about/" | relLangURL }}">{{ i18n "about" | default "About" }}</a>
       <a href="{{ "/about/" | relLangURL }}#contact">{{ i18n "contact" | default "Contact" }}</a>
       <a href="{{ "/privacy/" | relLangURL }}">{{ i18n "privacy" | default "Privacy" }}</a>
-      <a href="{{ "/index.xml" | relLangURL }}">RSS</a>
+      <a href="{{ "/index.xml" | relLangURL }}" title="RSS feed">RSS</a>
     </nav>
-    {{ if site.Params.social }}
-      <div class="footer-social">
-        {{ partial "social-links.html" . }}
-      </div>
-    {{ end }}
   </div>
 </footer>

@@ -30,13 +30,38 @@
   font-synthesis-weight: none;
 }
 
-/* Footer trust links (About / Contact / Privacy / RSS) */
+/* Footer: desktop left brand + right links; mobile stacked two rows */
+.site-footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.site-footer .footer-brand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  min-width: 0;
+}
+
+.site-footer .footer-text {
+  margin: 0;
+}
+
+.site-footer .footer-social {
+  margin: 0;
+}
+
 .footer-trust {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem 1.25rem;
-  margin-bottom: var(--spacing-md);
+  align-items: center;
   font-size: 0.875rem;
 }
 
@@ -50,11 +75,122 @@
   color: var(--accent-primary);
 }
 
+/* Dot separators between trust links */
+.footer-trust a:not(:last-child)::after {
+  content: "·";
+  margin: 0 0.65rem;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .site-footer .footer-content {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .site-footer .footer-brand {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Mobile: only © + icons; hide build credit */
+  .site-footer .footer-credit {
+    display: none;
+  }
+
+  .footer-trust {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 /* Home topics strip */
 .home-topics-section {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--spacing-xl) var(--spacing-lg) 0;
+}
+
+/* Policy / privacy pages — reuse blog single layout + post-toc */
+.policy-article .policy-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.policy-article .policy-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.policy-article .policy-updated {
+  margin: 0.5rem 0 var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.policy-article .policy-lead {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.policy-content {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-primary);
+}
+
+.policy-content h2 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: var(--spacing-xl) 0 var(--spacing-md);
+  color: var(--text-primary);
+  scroll-margin-top: 5rem;
+}
+
+.policy-content h2:first-child {
+  margin-top: 0;
+}
+
+.policy-content p {
+  margin: 0 0 var(--spacing-md);
+}
+
+.policy-content ol,
+.policy-content ul {
+  margin: 0 0 var(--spacing-md);
+  padding-left: 1.35em;
+}
+
+.policy-content li {
+  margin-bottom: 0.45em;
+}
+
+.policy-content li > p {
+  margin-bottom: 0.35em;
+}
+
+.policy-content strong {
+  font-weight: 600;
+}
+
+.policy-content a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.policy-content a:hover {
+  color: var(--accent-light-purple);
+}
+
+@media (max-width: 640px) {
+  .policy-content {
+    font-size: 1rem;
+  }
 }
 
 .home-topics-list {
