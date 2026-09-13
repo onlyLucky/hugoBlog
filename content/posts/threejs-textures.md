@@ -6,7 +6,8 @@ date: 2026-07-23T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "textures", "uv-mapping", "environment-map"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js 纹理", "UV 映射", "环境贴图", "TextureLoader", "贴图过滤"]
 draft: false
 ---
 

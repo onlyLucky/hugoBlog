@@ -46,6 +46,13 @@
 <title>{{ $pageTitle }}</title>
 <meta name="description" content="{{ $pageDesc }}">
 <meta name="author" content="{{ site.Params.author }}">
+{{- $keywords := .Params.keywords -}}
+{{- if and (not $keywords) .IsHome -}}
+  {{- $keywords = site.Params.keywords -}}
+{{- end -}}
+{{- with $keywords }}
+<meta name="keywords" content="{{ delimit . ", " }}">
+{{- end }}
 
 {{/* hreflang alternates */}}
 {{- range .Translations -}}

@@ -88,6 +88,7 @@ hasCJKLanguage = true
   [languages.zh.params]
     description = "记录学习、分享技术、探索计算机图形学与网站艺术特效"
     author = "Feynman"
+    keywords = ["Feynman 博客", "计算机图形学", "Three.js 教程", "WebGL", "GLSL", "GAMES101", "前端特效"]
     heroTitleLine1 = "FEYNMAN"
     heroTitleLine2 = "技术博客"
     custom404Message = "页面不存在"
@@ -129,6 +130,7 @@ hasCJKLanguage = true
   [languages.en.params]
     description = "Recording learning, sharing technology, exploring computer graphics and web art effects"
     author = "Feynman"
+    keywords = ["Feynman blog", "computer graphics", "Three.js tutorial", "WebGL", "GLSL", "GAMES101", "web effects"]
     heroTitleLine1 = "FEYNMAN"
     heroTitleLine2 = "Tech Blog"
     custom404Message = "Page not found"

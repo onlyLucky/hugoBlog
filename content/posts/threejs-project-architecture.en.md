@@ -7,6 +7,7 @@ categories: ["Frontend", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d"]
+keywords: ["Three.js tutorial", "Scene Camera Renderer", "3D project setup", "WebGL basics", "TypeScript Three.js"]
 draft: false
 ---
 

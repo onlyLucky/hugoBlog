@@ -6,7 +6,8 @@ date: 2026-08-15T12:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["Three.js Creation Diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "glsl", "shader", "vertex", "fragment"]
+tags: ["threejs", "typescript", "webgl", "glsl", "shader"]
+keywords: ["GLSL tutorial", "Three.js shader", "custom ShaderMaterial", "vertex shader", "fragment shader", "Fresnel effect"]
 draft: false
 ---
 

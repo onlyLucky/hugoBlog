@@ -6,7 +6,8 @@ date: 2026-07-24T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "scene-graph", "transform"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js 场景图", "父子变换", "坐标系", "太阳系模型", "Group"]
 draft: false
 ---
 

@@ -6,7 +6,8 @@ date: 2026-07-28T12:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["Three.js Creation Diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "gltf", "model-loading", "animation"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js model loading", "GLTF GLB", "GLTFLoader", "model compression", "Draco", "WebGL models"]
 draft: false
 ---
 

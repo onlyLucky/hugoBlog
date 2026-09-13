@@ -6,7 +6,8 @@ date: 2026-08-31T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "glsl", "shader", "noise", "perlin", "fbm"]
+tags: ["threejs", "glsl", "shader"]
+keywords: ["Perlin 噪声", "Simplex 噪声", "FBM 分形", "GLSL 噪声", "着色器云雾地形", "Three.js 噪声"]
 draft: false
 ---
 

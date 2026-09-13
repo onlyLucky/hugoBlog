@@ -28,6 +28,13 @@ scrollToTop = "回到顶部"
 
 # Home
 home = "首页"
+recentPosts = "最新文章"
+exploreTopics = "探索主题"
+
+# Trust / footer
+about = "关于"
+contact = "联系"
+privacy = "隐私"
 
 # Posts
 posts = "文章"

@@ -23,7 +23,7 @@ title: "关于"
 
 我希望通过持续输出，把零散的知识点串联成完整的知识体系。
 
-## 联系方式
+## 联系方式 {#contact}
 
 - GitHub: [Feynman](https://github.com/onlyLucky)
 

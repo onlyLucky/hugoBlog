@@ -7,7 +7,8 @@ categories: ["Frontend", "Canvas"]
 series: ["frontend-misc-notes"]
 weight: 1
 author: "Feynman"
-tags: ["html-in-canvas", "canvas", "webgl", "threejs", "wicg"]
+tags: ["html-in-canvas", "canvas", "webgl", "threejs"]
+keywords: ["HTML-in-Canvas", "Canvas HTML rendering", "Web standards proposal", "WICG", "WebGL texture", "offscreen DOM"]
 image: "/images/2026-09-02_html-in-canvas/html-surface-ready.png"
 draft: false
 ---

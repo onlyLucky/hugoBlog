@@ -6,7 +6,8 @@ date: 2026-07-17T10:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "lights", "shadows"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js 灯光", "平行光", "点光源", "聚光灯", "阴影质量", "WebGL 光照"]
 draft: false
 ---
 

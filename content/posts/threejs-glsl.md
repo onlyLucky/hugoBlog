@@ -6,7 +6,8 @@ date: 2026-08-15T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "glsl", "shader", "vertex", "fragment"]
+tags: ["threejs", "typescript", "webgl", "glsl", "shader"]
+keywords: ["GLSL 入门", "Three.js Shader", "自定义着色器", "顶点着色器", "片元着色器", "Fresnel"]
 draft: false
 ---
 

@@ -30,6 +30,59 @@
   font-synthesis-weight: none;
 }
 
+/* Footer trust links (About / Contact / Privacy / RSS) */
+.footer-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: var(--spacing-md);
+  font-size: 0.875rem;
+}
+
+.footer-trust a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-trust a:hover {
+  color: var(--accent-primary);
+}
+
+/* Home topics strip */
+.home-topics-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg) 0;
+}
+
+.home-topics-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: var(--spacing-md) 0 0;
+}
+
+.home-topics-list a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border, rgba(196, 181, 253, 0.35));
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: var(--glass-surface, rgba(255, 255, 255, 0.06));
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.home-topics-list a:hover {
+  border-color: var(--accent-primary, #b063e0);
+  color: var(--accent-primary, #b063e0);
+}
+
 /* Series badge in post meta */
 .post-series {
   display: flex;

@@ -6,7 +6,8 @@ date: 2026-07-20T12:00:00+08:00
 categories: ["图形学", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "rasterization", "rendering-pipeline"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 笔记", "计算机图形学入门", "光栅化", "渲染管线", "图形学导论"]
 draft: false
 ---
 

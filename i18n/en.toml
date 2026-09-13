@@ -29,6 +29,12 @@ scrollToTop = "Scroll to top"
 # Home
 home = "Home"
 recentPosts = "Recent Posts"
+exploreTopics = "Explore Topics"
+
+# Trust / footer
+about = "About"
+contact = "Contact"
+privacy = "Privacy"
 
 # Posts
 posts = "Posts"

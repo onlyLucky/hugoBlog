@@ -6,7 +6,8 @@ date: 2026-07-17T10:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "lights", "shadows"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js lights", "directional light", "point light", "spotlight", "shadow quality", "WebGL lighting"]
 draft: false
 ---
 

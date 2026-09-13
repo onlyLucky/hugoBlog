@@ -6,7 +6,8 @@ date: 2026-07-21T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "vectors", "linear-algebra", "matrices"]
+tags: ["games101", "graphics", "math"]
+keywords: ["GAMES101 linear algebra", "vector basics", "matrix operations", "math for graphics", "dot product cross product"]
 draft: false
 ---
 

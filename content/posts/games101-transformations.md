@@ -6,7 +6,8 @@ date: 2026-08-09T12:00:00+08:00
 categories: ["图形学", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "transformations", "homogeneous-coordinates", "affine", "view", "projection", "euler", "rodrigues"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 变换", "齐次坐标", "仿射变换", "MVP 矩阵", "三维变换", "图形学线性代数"]
 draft: false
 ---
 

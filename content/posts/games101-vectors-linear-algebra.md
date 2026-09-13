@@ -6,7 +6,8 @@ date: 2026-07-21T12:00:00+08:00
 categories: ["图形学", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "vectors", "linear-algebra", "matrices"]
+tags: ["games101", "graphics", "math"]
+keywords: ["GAMES101 线性代数", "向量基础", "矩阵运算", "图形学数学", "点积叉积"]
 draft: false
 ---
 

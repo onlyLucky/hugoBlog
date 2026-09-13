@@ -6,7 +6,8 @@ date: 2026-08-16T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "rasterization", "sampling", "anti-aliasing", "msaa", "fxaa", "taa", "dlss", "fourier", "convolution"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 rasterization", "anti-aliasing", "MSAA", "sampling", "convolution", "Fourier transform", "computer graphics"]
 draft: false
 ---
 

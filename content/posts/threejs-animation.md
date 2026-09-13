@@ -6,7 +6,8 @@ date: 2026-07-30T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "gsap", "animation", "keyframe"]
+tags: ["threejs", "typescript", "webgl", "animation"]
+keywords: ["Three.js 动画", "GSAP 补间", "关键帧动画", "requestAnimationFrame", "WebGL 动画"]
 draft: false
 ---
 

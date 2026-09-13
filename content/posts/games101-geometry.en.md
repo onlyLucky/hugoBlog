@@ -6,7 +6,8 @@ date: 2026-09-09T18:00:00+08:00
 categories: ["Graphics", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "geometry", "implicit", "explicit", "bezier", "bernstein", "bspline", "mesh-subdivision", "catmull-clark", "loop-subdivision", "mesh-simplification", "quadric-error-metrics", "shadow-mapping"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 geometry", "Bezier curve", "B-spline", "mesh subdivision", "mesh simplification", "shadow mapping", "computer graphics"]
 draft: false
 ---
 

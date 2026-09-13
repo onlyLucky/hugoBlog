@@ -6,7 +6,8 @@ date: 2026-08-30T18:00:00+08:00
 categories: ["Graphics", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "shading", "blinn-phong", "z-buffer", "pipeline", "texture-mapping", "barycentric-coordinates", "bilinear-interpolation", "mipmap", "environment-mapping", "normal-mapping", "shadow-mapping"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 shading", "Blinn-Phong", "Z-buffer", "texture mapping", "normal mapping", "shadow mapping", "computer graphics"]
 draft: false
 ---
 

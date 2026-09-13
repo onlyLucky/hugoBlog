@@ -6,7 +6,8 @@ date: 2026-08-09T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "transformations", "homogeneous-coordinates", "affine", "view", "projection", "euler", "rodrigues"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 transformations", "homogeneous coordinates", "affine transform", "MVP matrix", "3D transformations", "linear algebra graphics"]
 draft: false
 ---
 

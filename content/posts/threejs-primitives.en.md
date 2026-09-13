@@ -6,7 +6,8 @@ date: 2026-07-10T10:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "geometry"]
+tags: ["threejs", "typescript", "webgl", "3d"]
+keywords: ["Three.js geometry", "BoxGeometry", "SphereGeometry", "3D primitives", "wireframe"]
 draft: false
 ---
 

@@ -6,7 +6,8 @@ date: 2026-07-16T10:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "materials", "pbr"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js 材质", "PBR 材质", "MeshStandardMaterial", "粗糙度金属度", "卡通渲染"]
 draft: false
 ---
 

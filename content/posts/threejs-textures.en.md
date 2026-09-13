@@ -6,7 +6,8 @@ date: 2026-07-23T12:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "textures", "uv-mapping", "environment-map"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js textures", "UV mapping", "environment map", "TextureLoader", "texture filtering"]
 draft: false
 ---
 

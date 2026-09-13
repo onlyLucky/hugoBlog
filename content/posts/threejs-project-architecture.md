@@ -8,6 +8,7 @@ series: ["threejs-creation-diary"]
 weight: 1
 author: "Feynman"
 tags: ["threejs", "typescript", "webgl", "3d"]
+keywords: ["Three.js 入门", "Scene Camera Renderer", "3D 项目架构", "WebGL 基础", "TypeScript Three.js"]
 draft: false
 ---
 

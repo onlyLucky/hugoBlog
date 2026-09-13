@@ -6,7 +6,8 @@ date: 2026-07-05T10:00:00+08:00
 image: "/images/2026-07-05_trigonometry/all_functions_graph.png"
 categories: ["Math", "3D Basics"]
 author: "Feynman"
-tags: ["math", "trigonometry", "3d-basics", "threejs"]
+tags: ["math", "threejs", "3d"]
+keywords: ["trigonometry", "math for 3D graphics", "sine cosine", "inverse trig functions", "Three.js math basics"]
 draft: false
 ---
 

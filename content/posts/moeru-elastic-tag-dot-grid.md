@@ -7,7 +7,8 @@ categories: ["前端", "3D"]
 series: ["web-motion-art"]
 weight: 1
 author: "Feynman"
-tags: ["webgl", "threejs", "verlet", "physics", "dot-grid", "interactive"]
+tags: ["threejs", "webgl", "animation"]
+keywords: ["Three.js 交互", "Verlet 积分", "弹性吊绳", "波点网格", "WebGL 物理", "落地页特效"]
 draft: false
 ---
 

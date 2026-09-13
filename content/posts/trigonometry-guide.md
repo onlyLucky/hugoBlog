@@ -6,7 +6,8 @@ date: 2026-07-05T10:00:00+08:00
 image: "/images/2026-07-05_trigonometry/all_functions_graph.png"
 categories: ["数学", "3D基础"]
 author: "Feynman"
-tags: ["math", "trigonometry", "3d-basics", "threejs"]
+tags: ["math", "threejs", "3d"]
+keywords: ["三角函数", "3D 图形数学", "正弦余弦", "反三角函数", "Three.js 数学基础"]
 draft: false
 ---
 

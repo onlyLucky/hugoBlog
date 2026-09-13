@@ -6,7 +6,8 @@ date: 2026-08-25T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "glsl", "shader", "math", "sdf"]
+tags: ["threejs", "glsl", "shader", "math"]
+keywords: ["GLSL 数学函数", "smoothstep", "dot cross 光照", "SDF", "着色器图案", "Three.js GLSL"]
 draft: false
 ---
 

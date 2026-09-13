@@ -6,7 +6,8 @@ date: 2026-07-19T12:00:00+08:00
 categories: ["前端", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "cameras", "controls"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js 相机", "透视相机", "正交相机", "视锥体", "OrbitControls"]
 draft: false
 ---
 

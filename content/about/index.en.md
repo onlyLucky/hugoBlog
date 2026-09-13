@@ -23,7 +23,7 @@ This blog is my learning notebook and tech sharing space, mainly covering:
 
 I aim to connect scattered knowledge points into a complete knowledge system through continuous output.
 
-## Contact
+## Contact {#contact}
 
 - GitHub: [Feynman](https://github.com/onlyLucky)
 

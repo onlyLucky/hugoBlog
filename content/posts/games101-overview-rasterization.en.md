@@ -6,7 +6,8 @@ date: 2026-07-20T12:00:00+08:00
 categories: ["Graphics", "GAMES101"]
 series: ["games101-modern-computer-graphics"]
 author: "Feynman"
-tags: ["games101", "graphics", "rasterization", "rendering-pipeline"]
+tags: ["games101", "graphics"]
+keywords: ["GAMES101 notes", "introduction to computer graphics", "rasterization", "rendering pipeline", "graphics overview"]
 draft: false
 ---
 

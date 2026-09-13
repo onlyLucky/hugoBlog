@@ -6,7 +6,8 @@ date: 2026-07-24T12:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["threejs-creation-diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "scene-graph", "transform"]
+tags: ["threejs", "typescript", "webgl"]
+keywords: ["Three.js scene graph", "parent child transform", "coordinate system", "solar system demo", "THREE.Group"]
 draft: false
 ---
 

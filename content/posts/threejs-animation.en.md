@@ -6,7 +6,8 @@ date: 2026-07-30T12:00:00+08:00
 categories: ["Frontend", "3D"]
 series: ["Three.js Creation Diary"]
 author: "Feynman"
-tags: ["threejs", "typescript", "webgl", "3d", "gsap", "animation", "keyframe"]
+tags: ["threejs", "typescript", "webgl", "animation"]
+keywords: ["Three.js animation", "GSAP tween", "keyframe animation", "requestAnimationFrame", "WebGL animation"]
 draft: false
 ---
 
