@@ -2,4 +2,23 @@ User-agent: *
 Allow: /
 Disallow: /index.json
 
+# Chinese crawlers (explicit allow - same as *)
+User-agent: Baiduspider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: Sosospider
+Allow: /
+
+User-agent: Yisouspider
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://blog.deltastudio.space/sitemap.xml

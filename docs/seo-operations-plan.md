@@ -138,11 +138,15 @@ meta_title > title | site.Title
 |------|------|
 | **Google** | GSC 验证域名 → 提交 sitemap → 核心页 Request Indexing |
 | **Bing** | Bing Webmaster → 验证 → 提交 sitemap（可从 GSC 导入）→ 开启 IndexNow |
-| **百度** | 搜索资源平台普通收录 → API 主动推送（发布后脚本 curl） |
+| **百度** | 验证 → sitemap（配额 0 时跳过）→ **普通收录 API 主动推送**（主通道） |
+| **360** | zhanzhang.so.com 验证（meta/文件）→ 提交 sitemap |
+| **搜狗** | zhanzhang.sogou.com 验证 → 提交 sitemap |
+| **神马** | zhanzhang.sm.cn 验证 → 提交 sitemap（UC/夸克移动端） |
 | **Yandex** | 可选，IndexNow 顺带覆盖 |
 | **IndexNow** | 生成 key 文件放 `static/`，发布后 POST 新 URL |
 
-**百度注意**：子域名收录弱于主域路径。短期不动域名结构；若 3–6 个月后收录仍差，再评估迁 `deltastudio.space/blog/`。
+**百度注意**：子域名收录弱于主域路径。短期不动域名结构；若 3–6 个月后收录仍差，再评估迁 `deltastudio.space/blog/`。  
+**国内注意**：360/搜狗/神马无百度式公开 Token API，验证 + sitemap + 自然抓取即可；详见 `docs/webmaster-setup.md`。
 
 ### 1.6 验收
 
