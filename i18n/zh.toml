@@ -36,6 +36,16 @@ about = "关于"
 contact = "联系"
 privacy = "隐私"
 policyUpdated = "更新日期"
+cancel = "取消"
+
+# WeChat OA modal
+wechatOA = "微信公众号"
+wechatOATitle = "微信公众号"
+wechatOADesc = "微信扫一扫二维码，或搜一搜名称关注公众号。"
+wechatOASearchPrefix = "微信搜一搜："
+wechatOACopyName = "点击复制名称"
+wechatOACopied = "名称已复制，去微信搜一搜粘贴即可"
+wechatOASave = "保存二维码"
 
 # Posts
 posts = "文章"

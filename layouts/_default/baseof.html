@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode }}" class="h-full">
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="flex flex-col min-h-screen{{ if eq site.Language.LanguageDirection "rtl" }} rtl{{ end }}">
+    <a href="#main-content" class="skip-to-main" aria-label="{{ i18n "skipToMain" }}"
+      >{{ i18n "skipToMain" }}</a
+    >
+    <header class="sticky-header">
+      <div class="header-container">
+        {{ partial "header.html" . }}
+      </div>
+      <div class="reading-progress-bar" aria-hidden="true"></div>
+    </header>
+    <script>
+      // 动态测量 header 高度，设置 CSS 变量
+      (function() {
+        var h = document.querySelector('.sticky-header');
+        if (h) {
+          document.documentElement.style.setProperty('--header-height', h.offsetHeight + 'px');
+        }
+      })();
+    </script>
+
+    <main id="main-content" class="flex-1{{ if .IsHome }} home-main{{ end }}" role="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer>
+      {{ partial "footer.html" . }}
+    </footer>
+
+    {{ partial "search-modal.html" . }}
+    {{ partial "mobile-menu.html" . }}
+    {{ partial "buy-me-coffee.html" . }}
+    {{ partial "scroll-to-top.html" . }}
+    {{ partial "wechat-oa-modal.html" . }}
+
+    {{ partial "head/js.html" . }}
+  </body>
+</html>

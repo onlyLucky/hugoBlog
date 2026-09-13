@@ -26,6 +26,7 @@ title: "关于"
 ## 联系方式 {#contact}
 
 - GitHub: [Feynman](https://github.com/onlyLucky)
+- 微信公众号：点击页脚微信图标，微信扫一扫二维码，或搜一搜「妙脆咪咪虾」
 
 ## 关于本站
 

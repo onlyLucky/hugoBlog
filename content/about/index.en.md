@@ -26,6 +26,7 @@ I aim to connect scattered knowledge points into a complete knowledge system thr
 ## Contact {#contact}
 
 - GitHub: [Feynman](https://github.com/onlyLucky)
+- WeChat Official Account: use the WeChat icon in the footer — scan the QR code in WeChat, or search「妙脆咪咪虾」
 
 ## About This Site
 

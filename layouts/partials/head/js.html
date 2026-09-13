@@ -18,3 +18,7 @@
 {{/* 自定义：导航上下文设置 */}}
 {{ $navCtx := resources.Get "js/nav-context.js" | minify | fingerprint }}
 <script src="{{ $navCtx.RelPermalink }}" defer></script>
+
+{{/* WeChat OA modal */}}
+{{ $wechatOA := resources.Get "js/wechat-oa.js" | minify | fingerprint }}
+<script src="{{ $wechatOA.RelPermalink }}" defer></script>

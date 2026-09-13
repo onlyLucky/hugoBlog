@@ -36,6 +36,16 @@ about = "About"
 contact = "Contact"
 privacy = "Privacy"
 policyUpdated = "Updated"
+cancel = "Cancel"
+
+# WeChat OA modal
+wechatOA = "WeChat Official Account"
+wechatOATitle = "WeChat Official Account"
+wechatOADesc = "Scan the QR code in WeChat, or search the account name to follow."
+wechatOASearchPrefix = "Search in WeChat: "
+wechatOACopyName = "Copy name"
+wechatOACopied = "Name copied. Paste it into WeChat search."
+wechatOASave = "Save QR"
 
 # Posts
 posts = "Posts"

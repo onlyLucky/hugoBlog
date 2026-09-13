@@ -1,0 +1,52 @@
+{{- with site.Params.wechatOA -}}
+{{- $name := .name | default "" -}}
+{{- $qr := .qr | default "/images/wechat-oa-qr.png" -}}
+<div
+  class="wechat-oa-modal"
+  id="wechat-oa-modal"
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="wechat-oa-title">
+  <div class="wechat-oa-mask" data-wechat-oa-close></div>
+  <div class="wechat-oa-panel" role="document">
+    <h2 class="wechat-oa-title" id="wechat-oa-title">{{ i18n "wechatOATitle" | default "WeChat Official Account" }}</h2>
+    <p class="wechat-oa-desc">{{ i18n "wechatOADesc" | default "Scan the QR code or search the account name in WeChat to follow." }}</p>
+
+    <div class="wechat-oa-qr-wrap">
+      <img
+        class="wechat-oa-qr"
+        src="{{ $qr | relURL }}"
+        alt="{{ $name }}"
+        width="280"
+        height="280"
+        draggable="false"
+        loading="lazy" />
+    </div>
+
+    <p class="wechat-oa-search">
+      {{ i18n "wechatOASearchPrefix" | default "Search in WeChat:" }}
+      <button
+        type="button"
+        class="wechat-oa-name"
+        data-wechat-oa-copy="{{ $name }}"
+        title="{{ i18n "wechatOACopyName" | default "Copy name" }}">
+        {{ $name }}
+      </button>
+    </p>
+    <p class="wechat-oa-copy-tip" id="wechat-oa-copy-tip" hidden>{{ i18n "wechatOACopied" | default "Name copied. Paste it in WeChat search." }}</p>
+
+    <div class="wechat-oa-actions">
+      <button type="button" class="wechat-oa-btn wechat-oa-btn-ghost" data-wechat-oa-close>
+        {{ i18n "cancel" | default "Cancel" }}
+      </button>
+      <a
+        class="wechat-oa-btn wechat-oa-btn-primary"
+        href="{{ $qr | relURL }}"
+        download="wechat-{{ $name }}.png">
+        {{ i18n "wechatOASave" | default "Save QR" }}
+      </a>
+    </div>
+  </div>
+</div>
+{{- end -}}
