@@ -73,6 +73,19 @@ hasCJKLanguage = true
     name = "妙脆咪咪虾"
     qr = "/images/wechat-oa-qr.png"
 
+  # GA4 / Clarity — leave empty to disable
+  [params.analytics]
+    google = "G-BPJK38NLDC"
+    clarity = "yhio0ngc2f"
+
+  # Search engine webmaster meta verification (empty = skip)
+  # File-based verifications live in static/ (e.g. google*.html, BingSiteAuth.xml, baidu_verify_*.html)
+  [params.webmaster]
+    google = ""   # content of <meta name="google-site-verification" ...>
+    bing = ""     # content of <meta name="msvalidate.01" ...>
+    baidu = ""    # content of <meta name="baidu-site-verification" ...>
+    yandex = ""   # optional: <meta name="yandex-verification" ...>
+
   [params.codeHighlight]
     darkTheme = "catppuccin-macchiato"
     lightTheme = "catppuccin-frappe"

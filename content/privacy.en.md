@@ -30,7 +30,7 @@ This policy explains how information is handled when you visit and use this site
    Static hosting or reverse proxies may keep standard access logs (IP, User-Agent, timestamp, request path) for security and troubleshooting. Retention follows the host's policy.
 
 3. **Analytics (optional)**  
-   If Google Analytics or similar is enabled, it is used only for aggregate traffic and referrer insights. **Personal data is not sold.** If analytics is off, this item does not apply.
+   If Google Analytics and Microsoft Clarity are enabled in site config, the site loads page-view and custom-event tracking (outbound clicks, search, code copy, scroll depth, WeChat modal) plus anonymized heatmaps/session replays. **Personal data is not sold.** Empty IDs disable those scripts.
 
 4. **Information you send voluntarily**  
    Messages via GitHub issues, email, or other external channels are used only to reply and discuss, and are not built into an on-site user profile.

@@ -22,3 +22,7 @@
 {{/* WeChat OA modal */}}
 {{ $wechatOA := resources.Get "js/wechat-oa.js" | minify | fingerprint }}
 <script src="{{ $wechatOA.RelPermalink }}" defer></script>
+
+{{/* Analytics events (safe no-op when GA ID is empty) */}}
+{{ $analytics := resources.Get "js/analytics.js" | minify | fingerprint }}
+<script src="{{ $analytics.RelPermalink }}" defer></script>

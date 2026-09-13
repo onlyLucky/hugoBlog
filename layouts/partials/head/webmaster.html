@@ -1,0 +1,15 @@
+{{- /* Unified webmaster verification metas — set values in hugo.toml params.webmaster */ -}}
+{{- with site.Params.webmaster -}}
+{{- with .google }}
+<meta name="google-site-verification" content="{{ . }}">
+{{- end }}
+{{- with .bing }}
+<meta name="msvalidate.01" content="{{ . }}">
+{{- end }}
+{{- with .baidu }}
+<meta name="baidu-site-verification" content="{{ . }}">
+{{- end }}
+{{- with .yandex }}
+<meta name="yandex-verification" content="{{ . }}">
+{{- end }}
+{{- end -}}

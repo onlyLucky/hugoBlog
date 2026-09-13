@@ -3,6 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="{{ site.Language.LanguageCode }}">
 <meta name="theme-color" content="#BD5FFF">
+{{ partial "head/webmaster.html" . }}
 <script>
   // Set theme immediately to prevent flash
   (function () {
@@ -71,6 +72,9 @@
 
 <!-- Open Graph + Twitter Card (theme partial; og:image fallback) -->
 {{ partial "head/opengraph.html" . }}
+
+<!-- Analytics (GA4, optional) -->
+{{ partial "head/analytics.html" . }}
 
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ .Permalink }}">

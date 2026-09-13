@@ -1,0 +1,26 @@
+{{- $ga := site.Params.analytics.google | default "" -}}
+{{- $clarity := site.Params.analytics.clarity | default "" -}}
+{{- if and $ga (ne $ga "") (ne $ga "G-XXXXXXXXXX") -}}
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', {{ $ga | jsonify | safeJS }}, {
+    send_page_view: true,
+    anonymize_ip: true
+  });
+  window.__GA_ID__ = {{ $ga | jsonify | safeJS }};
+</script>
+{{- end -}}
+{{- if and $clarity (ne $clarity "") (ne $clarity "YOUR_CLARITY_ID") -}}
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", {{ $clarity | jsonify | safeJS }});
+</script>
+{{- end -}}
