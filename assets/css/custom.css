@@ -412,13 +412,24 @@ body.wechat-oa-open {
   opacity: 0.85;
 }
 
-/* 合集列表描述：最多2行，超出省略号 */
-.series-item .post-description {
+/* ===== 文章列表：标题下方的描述最多 3 行，超出显示省略号 =====
+   多行截断用 -webkit-line-clamp（需配合 display:-webkit-box）。
+   覆盖范围：
+     .post-description        —— 首页「最新文章」、文章列表页 /posts/、
+                                 合集详情页的文章列表（均由 partials/post-card.html 渲染）
+     .series-item .post-description —— 合集总览页 /series/ 的合集简介
+     .tag-post-summary        —— 标签页 /tags/<tag>/ 的文章摘要
+     .search-result-summary   —— 站内搜索下拉结果的文章摘要
+   本文件在 head/css.html 的 $cssFiles 中排在最后，故可覆盖主题样式。 */
+.post-description,
+.series-item .post-description,
+.tag-post-summary,
+.search-result-summary {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* ===== 文章代码块：滚动与滚动条（custom 覆盖） =====
