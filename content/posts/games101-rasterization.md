@@ -11,8 +11,8 @@ keywords: ["GAMES101 光栅化", "抗锯齿", "MSAA", "采样", "卷积", "傅�
 draft: false
 ---
 
-> 课程主讲：闫令琪 (Lingqi Yan) | UCSB
-> B站课程链接：https://www.bilibili.com/video/BV1X7411F744
+- 课程主讲：闫令琪 (Lingqi Yan) | UCSB
+- B站课程链接：https://www.bilibili.com/video/BV1X7411F744
 
 光栅化 (Rasterization) 是将矢量图形（几何描述）转换为像素图像（光栅图像）的过程。
 

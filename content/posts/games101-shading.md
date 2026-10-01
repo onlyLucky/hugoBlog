@@ -11,10 +11,10 @@ keywords: ["GAMES101 着色", "Blinn-Phong", "Z-Buffer", "纹理映射", "法线
 draft: false
 ---
 
-> 课程主讲：闫令琪 (Lingqi Yan) | UCSB
-> B站课程链接：https://www.bilibili.com/video/BV1X7411F744
-> 本章对应课件：[第 7 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf)（Illumination, Shading and Graphics Pipeline）、[第 8 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf)（Shading, Pipeline and Texture Mapping）、[第 9 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_09.pdf)（Texture Mapping cont.）
->
+- 课程主讲：闫令琪 (Lingqi Yan) | UCSB
+- B站课程链接：https://www.bilibili.com/video/BV1X7411F744
+- 本章对应课件：[第 7 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf)（Illumination, Shading and Graphics Pipeline）、[第 8 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf)（Shading, Pipeline and Texture Mapping）、[第 9 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_09.pdf)（Texture Mapping cont.）
+
 > 说明：官方精简版课件中，纹理应用（环境贴图、凹凸/法线贴图、位移贴图、3D 纹理）位于第 10 讲、阴影贴图位于第 12 讲；本文按 B 站完整版课程结构将其归入着色主题之下。
 
 着色 (Shading) 是将材质属性应用到物体上的过程，决定了物体在不同光照条件下呈现的颜色和外观。本文涵盖深度缓冲（可见性/遮挡）、Blinn-Phong 反射模型、着色频率、图形渲染管线、纹理映射及其相关技术。

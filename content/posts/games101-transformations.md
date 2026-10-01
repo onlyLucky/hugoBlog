@@ -11,8 +11,8 @@ keywords: ["GAMES101 变换", "齐次坐标", "仿射变换", "MVP 矩阵", "三
 draft: false
 ---
 
-> 课程主讲：闫令琪 (Lingqi Yan) | UCSB
-> B站课程链接：https://www.bilibili.com/video/BV1X7411F744
+- 课程主讲：闫令琪 (Lingqi Yan) | UCSB
+- B站课程链接：https://www.bilibili.com/video/BV1X7411F744
 
 
 ## 1 为什么要学习变换

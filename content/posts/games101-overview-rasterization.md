@@ -11,8 +11,8 @@ keywords: ["GAMES101 笔记", "计算机图形学入门", "光栅化", "渲染�
 draft: false
 ---
 
-> 课程主讲：闫令琪 (Lingqi Yan) | UCSB
-> B站课程链接：https://www.bilibili.com/video/BV1X7411F744
+- 课程主讲：闫令琪 (Lingqi Yan) | UCSB
+- B站课程链接：https://www.bilibili.com/video/BV1X7411F744
 
 
 ## 1 什么是计算机图形学

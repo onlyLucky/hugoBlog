@@ -11,8 +11,8 @@ keywords: ["GAMES101 notes", "introduction to computer graphics", "rasterization
 draft: false
 ---
 
-> Instructor: Lingqi Yan | UCSB
-> Course Link: https://www.bilibili.com/video/BV1X7411F744
+- Instructor: Lingqi Yan | UCSB
+- Course Link: https://www.bilibili.com/video/BV1X7411F744
 
 
 ## 1 What is Computer Graphics

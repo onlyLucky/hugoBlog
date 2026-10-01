@@ -11,10 +11,10 @@ keywords: ["GAMES101 shading", "Blinn-Phong", "Z-buffer", "texture mapping", "no
 draft: false
 ---
 
-> Instructor: Lingqi Yan | UCSB
-> Bilibili: https://www.bilibili.com/video/BV1X7411F744
-> Lectures covered: [Lecture 7](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf) (Illumination, Shading and Graphics Pipeline), [Lecture 8](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf) (Shading, Pipeline and Texture Mapping), [Lecture 9](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_09.pdf) (Texture Mapping cont.)
->
+- Instructor: Lingqi Yan | UCSB
+- Bilibili: https://www.bilibili.com/video/BV1X7411F744
+- Lectures covered: [Lecture 7](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf) (Illumination, Shading and Graphics Pipeline), [Lecture 8](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf) (Shading, Pipeline and Texture Mapping), [Lecture 9](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_09.pdf) (Texture Mapping cont.)
+
 > Note: In the official condensed slides, texture applications (environment maps, bump/normal/displacement maps, 3D textures) appear in Lecture 10 and shadow mapping in Lecture 12; following the full Bilibili course structure, they are grouped under the shading topic here.
 
 Shading is the process of applying material properties to objects, which determines their color and appearance under different lighting conditions. This post covers the depth buffer (visibility/occlusion), the Blinn-Phong reflectance model, shading frequencies, the graphics pipeline, texture mapping and related techniques.

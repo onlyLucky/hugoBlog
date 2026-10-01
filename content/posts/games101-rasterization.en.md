@@ -11,8 +11,8 @@ keywords: ["GAMES101 rasterization", "anti-aliasing", "MSAA", "sampling", "convo
 draft: false
 ---
 
-> Instructor: Lingqi Yan | UCSB
-> Bilibili: https://www.bilibili.com/video/BV1X7411F744
+- Instructor: Lingqi Yan | UCSB
+- Bilibili: https://www.bilibili.com/video/BV1X7411F744
 
 Rasterization is the process of converting vector graphics (geometric descriptions) into pixel images (raster images).
 

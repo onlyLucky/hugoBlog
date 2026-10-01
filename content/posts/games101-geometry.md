@@ -11,9 +11,9 @@ keywords: ["GAMES101 几何", "贝塞尔曲线", "B样条", "网格细分", "网
 draft: false
 ---
 
-> 课程主讲：闫令琪 (Lingqi Yan) | UCSB
-> B站课程链接：https://www.bilibili.com/video/BV1X7411F744
-> 本章对应课件：[第 10 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf)（Geometry 1: Introduction）、[第 11 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_11.pdf)（Geometry 2: Curves and Surfaces）、[第 12 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf)（Geometry 3）
+- 课程主讲：闫令琪 (Lingqi Yan) | UCSB
+- B站课程链接：https://www.bilibili.com/video/BV1X7411F744
+- 本章对应课件：[第 10 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf)（Geometry 1: Introduction）、[第 11 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_11.pdf)（Geometry 2: Curves and Surfaces）、[第 12 讲](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf)（Geometry 3）
 
 几何 (Geometry) 是图形学中极其重要且困难的一个主题。本文介绍几何的各种表示方法（隐式与显式）、曲线与曲面（贝塞尔曲线、B 样条、贝塞尔曲面）、网格处理（细分、简化、正规化）以及阴影映射 (Shadow Mapping) 技术。
 

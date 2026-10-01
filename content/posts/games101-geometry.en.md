@@ -11,9 +11,9 @@ keywords: ["GAMES101 geometry", "Bezier curve", "B-spline", "mesh subdivision", 
 draft: false
 ---
 
-> Instructor: Lingqi Yan | UCSB
-> Bilibili: https://www.bilibili.com/video/BV1X7411F744
-> Lectures covered: [Lecture 10](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf) (Geometry 1: Introduction), [Lecture 11](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_11.pdf) (Geometry 2: Curves and Surfaces), [Lecture 12](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf) (Geometry 3)
+- Instructor: Lingqi Yan | UCSB
+- Bilibili: https://www.bilibili.com/video/BV1X7411F744
+- Lectures covered: [Lecture 10](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf) (Geometry 1: Introduction), [Lecture 11](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_11.pdf) (Geometry 2: Curves and Surfaces), [Lecture 12](https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf) (Geometry 3)
 
 Geometry is an extremely important yet difficult topic in computer graphics. This post covers various ways to represent geometry (implicit and explicit), curves and surfaces (Bezier curves, B-splines, Bezier surfaces), mesh processing (subdivision, simplification, regularization) as well as the shadow mapping technique.
 
