@@ -1,5 +1,5 @@
 ---
-title: "09 | Advanced Light Transport and Complex Appearance Modeling (Biased/Unbiased, BDPT, MLT, Photon Mapping and Beyond BRDF)"
+title: "09 | Advanced Light Transport and Complex Appearance Modeling"
 meta_title: "GAMES101 Advanced Rendering Topics: BDPT, MLT, Photon Mapping and Complex Appearance"
 description: "Biased vs unbiased vs consistent estimators; unbiased light transport methods BDPT and MLT; biased methods photon mapping (photon tracing plus final gathering, density estimation) and VCM (vertex connection plus vertex merging); instant radiosity and virtual point lights; non-surface models (participating media, hair, granular materials); surface models and BRDF/BTDF/BSDF/BSSRDF; subsurface scattering and the dipole approximation; cloth rendering; detailed/glinty materials and p-NDF; wave optics appearance; procedural appearance"
 date: 2026-10-01T18:00:00+08:00

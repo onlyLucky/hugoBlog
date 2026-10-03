@@ -1,5 +1,5 @@
 ---
-title: "08 | Materials and Appearances (Diffuse, Fresnel, Microfacet and BRDF)"
+title: "08 | Materials and Appearances"
 meta_title: "GAMES101 Materials and Appearances: Fresnel, Microfacet and BRDF"
 description: "A material is a BRDF, diffuse (Lambertian) materials, glossy materials, ideal specular reflection and refraction (Snell's law, total internal reflection, Snell's window), the Fresnel term and the Schlick approximation, microfacet theory (F/G/D and the normal distribution function), isotropic vs anisotropic materials, properties of BRDFs (non-negativity, reciprocity, energy conservation), BRDF measurement and the MERL database"
 date: 2026-10-01T18:00:00+08:00
